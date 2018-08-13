@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${sessionScope.user.name}的飞书管理中心</title>
+<title>${sessionScope.user.name}的客户管理中心</title>
 <!-- 给页面添加ico -->
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <!-- 导入css样式的时候引入绝对路径 -->

@@ -104,5 +104,6 @@ public class GetPageCustomerServlet extends HttpServlet {
 			request.getRequestDispatcher("./manager/getAllCustomer.jsp")
 					.forward(request, response);
 		}
+		System.out.println("get page customer servlet dopost...");
 	}
 }

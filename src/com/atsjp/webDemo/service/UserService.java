@@ -53,6 +53,7 @@ public class UserService {
 	 * 删除cname对应Customer的信息
 	 */
 	public boolean deleteCustomer(Customer customer) {
+//		System.out.println("调用user service删除用户的deleteCustomer方法");
 		if (cu.deleteCustomer(customer)) {
 			return true;
 		} else {

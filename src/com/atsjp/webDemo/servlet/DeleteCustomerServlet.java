@@ -33,7 +33,9 @@ public class DeleteCustomerServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String cName = request.getParameter("cname");
-		cName = new String(cName.trim().getBytes("ISO-8859-1"), "UTF-8"); // 解决url获取中文乱码问题
+//		System.out.println("request中拿到的cname"+cName);
+//		cName = new String(cName.trim().getBytes("ISO-8859-1"), "UTF-8"); // 解决url获取中文乱码问题
+//		System.out.println("解码后的cname"+cName);
 		Customer tempC = new Customer();
 		tempC.setCname(cName);
 		if (us.deleteCustomer(tempC)) {

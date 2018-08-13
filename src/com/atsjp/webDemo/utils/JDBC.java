@@ -14,7 +14,7 @@ public class JDBC {
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/web_book";
 	// Database credentials -- 数据库名和密码自己修改
 	private static final String USER = "root";
-	private static final String PASS = "123456";
+	private static final String PASS = "root";
 	private static Connection conn;
 
 	/*
