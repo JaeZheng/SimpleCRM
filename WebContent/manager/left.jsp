@@ -28,6 +28,11 @@
 		</tr>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/manager/aboutUs.jsp"
+					target="mainFrame">关于我们</a></td>
+		</tr>
+		<tr>
+			<td><a
 				href="<%=request.getContextPath()%>/UserServlet?method=logout"
 				target="_top">退出系统</a></td>
 		</tr>
