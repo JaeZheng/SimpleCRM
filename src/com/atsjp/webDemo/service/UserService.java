@@ -57,7 +57,6 @@ public class UserService {
 	 * 删除cname对应Customer的信息
 	 */
 	public boolean deleteCustomer(Customer customer) {
-//		System.out.println("调用user service删除用户的deleteCustomer方法");
 		if (cu.deleteCustomer(customer)) {
 			return true;
 		} else {
@@ -191,6 +190,18 @@ public class UserService {
 	 */
     public boolean modifyCompany(Company company) {
         if (companyDao.modifyCompany(company)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+	 *
+	 * 删除company对应Customer的信息
+	 */
+    public boolean deleteCompany(Company company) {
+        if (companyDao.deleteCompany(company)) {
             return true;
         } else {
             return false;
