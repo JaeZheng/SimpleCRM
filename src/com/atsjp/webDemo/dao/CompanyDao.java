@@ -38,7 +38,7 @@ public class CompanyDao implements CompanyDaoInter {
             if (res.next()) {// 存在相同手机号码，
                 return false;
             } else {
-                String sql1 = "insert into company values(?,?,?,?,?,?,?,?,?)";
+                String sql1 = "insert into company values(?,?,?,?,?)";
                 ps = conn.prepareStatement(sql1);
                 ps.setString(1, company.getId());
                 ps.setString(2, company.getCompanyname());
@@ -81,11 +81,12 @@ public class CompanyDao implements CompanyDaoInter {
         String sql = "update company set companyname=?, linkman=?, linkphone=?, address=? where id=?";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, company.getId());
-            ps.setString(2, company.getCompanyname());
-            ps.setString(3, company.getLinkman());
-            ps.setString(4, company.getLinkphone());
-            ps.setString(5, company.getAddress());
+            ps.setString(1, company.getCompanyname());
+            ps.setString(2, company.getLinkman());
+            ps.setString(3, company.getLinkphone());
+            ps.setString(4, company.getAddress());
+            ps.setString(5, company.getId());
+            ps.executeUpdate();
             return true;
         } catch (Exception e) {
             return false;
@@ -171,7 +172,6 @@ public class CompanyDao implements CompanyDaoInter {
             while (res.next()) {
                 count = Integer.valueOf(res.getString(1));
             }
-            System.out.println("查询count结果: "+ Integer.toString(count));
             return count;
         } catch (Exception e) {
             return 0;

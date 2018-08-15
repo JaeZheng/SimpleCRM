@@ -142,4 +142,58 @@ public class UserService {
 		company = companyDao.getCompany(company);
 		return company;
 	}
+
+    /*
+     *
+     * 根据servlet返回的companyName的信息，到dao层查看company信息是否存在
+     */
+    public boolean checkCompanyNameExist(String companyName) {
+        Company company = new Company();
+        company.setCompanyname(companyName);
+        Company tempc = companyDao.getCompany(company);
+        if (tempc.getCompanyname() != null && tempc.getCompanyname() != "") {
+            return true;// 姓名已存在
+        } else {
+            return false;// 姓名不存在
+        }
+    }
+
+    /*
+     *
+     * 根据servlet返回的link的信息，到dao层查看company信息是否存在
+     */
+    public boolean checkLinkPhoneExist(String linkPhone) {
+        Company company = new Company();
+        company.setLinkphone(linkPhone);
+        Company tempc = companyDao.getCompany(company);
+        if (tempc.getCompanyname() != null && tempc.getCompanyname() != "") {
+            return true;// 手机号码已存在
+        } else {
+            return false;// 手机号码不存在
+        }
+    }
+
+    /*
+	 *
+	 * 根据servlet返回的Company对象，添加Company的对象到数据库中
+	 */
+    public boolean addCompany(Company company) {
+        if (companyDao.addCompany(company)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+	 *
+	 * 根据servlet返回的Company的信息，到dao层更新company信息
+	 */
+    public boolean modifyCompany(Company company) {
+        if (companyDao.modifyCompany(company)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

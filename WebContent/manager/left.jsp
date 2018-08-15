@@ -18,12 +18,12 @@
 		</tr>
 		<tr>
 			<td><a
-				href="<%=request.getContextPath()%>/manager/addCustomer.jsp"
+				href="<%=request.getContextPath()%>/manager/addCompany.jsp"
 				target="mainFrame">增加客户</a></td>
 		</tr>
 		<tr>
 			<td><a
-				href="<%=request.getContextPath()%>/manager/modifyCustomer.jsp"
+				href="<%=request.getContextPath()%>/manager/modifyCompany.jsp"
 				target="mainFrame">修改客户</a></td>
 		</tr>
 		<tr>

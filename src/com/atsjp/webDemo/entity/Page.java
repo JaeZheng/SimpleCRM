@@ -1,6 +1,7 @@
 package com.atsjp.webDemo.entity;
 
-import com.atsjp.webDemo.dao.CustomerDao;
+//import com.atsjp.webDemo.dao.CustomerDao;
+import com.atsjp.webDemo.dao.CompanyDao;
 
 public class Page {
 	private int Page = 0;// 总页数
@@ -22,7 +23,7 @@ public class Page {
 
 	public boolean getNew() {// 获取最新的数据库信息
 		try {
-			this.TotalCount = new CustomerDao().getCount();
+			this.TotalCount = new CompanyDao().getCount();
 			double dtc = (double) TotalCount;
 			double dps = (double) PageSize;
 			this.Page = (int) Math.ceil(dtc / dps);

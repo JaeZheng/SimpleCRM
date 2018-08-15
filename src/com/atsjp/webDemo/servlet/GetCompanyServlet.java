@@ -37,9 +37,11 @@ public class GetCompanyServlet extends HttpServlet {
 		String index = request.getParameter("cindex");
 		try {
 			String encoding = request.getParameter("encoding");
+			/*
 			if (encoding.equals("ISO-8859-1")) {
 				index = new String(index.trim().getBytes("ISO-8859-1"), "UTF-8"); // 解决url获取中文乱码问题
 			}
+			*/
 		} catch (Exception e) {
 			// 由于跳转过来的编码方式不确定，可能出现encoding无值
 		}

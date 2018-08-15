@@ -36,7 +36,6 @@ public class GetPageCompanyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// 处理从前台传回的数据,first,down，up,last分别表示首页，上一页，下一页,末页，0,1，2，3...表示第几页
-		System.out.println("调用GetPageCompanyServlet...");
 		String page = "";
 		try {
 			page = request.getParameter("page");
@@ -76,7 +75,7 @@ public class GetPageCompanyServlet extends HttpServlet {
 			currentPage = (pageService.getPage() - 1) * pageSize;
 		}
 		pageService.setCurrentPage(currentPage);
-		// 进行查找customer信息
+		// 进行查找company信息
 		tempCu = us.getAllCompany(currentPage, pageSize);
 		// 传回真正逻辑意义上的总记录,总页数,第一页（首页），当前页,开始打印和结束打印页
 		int beginPage = currentPage / pageSize + 1 - 5;// 当前页向前多打印5页
