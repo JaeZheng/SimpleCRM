@@ -13,13 +13,13 @@
 	<table align="center" cellpadding="10" cellspacing="10">
 		<tr>
 			<td><a
-				href="<%=request.getContextPath()%>/GetPageCustomerServlet?page=0"
+				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=0"
 				target="mainFrame" class="xyz">全部客户信息</a></td>
 		</tr>
 		<tr>
 			<td><a
 				href="<%=request.getContextPath()%>/manager/addCustomer.jsp"
-				target="mainFrame"">增加客户</a></td>
+				target="mainFrame">增加客户</a></td>
 		</tr>
 		<tr>
 			<td><a

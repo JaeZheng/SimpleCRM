@@ -1,32 +1,30 @@
 package com.atsjp.webDemo.servlet;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import com.atsjp.webDemo.entity.Company;
+import com.atsjp.webDemo.entity.Page;
+import com.atsjp.webDemo.service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.atsjp.webDemo.entity.Customer;
-import com.atsjp.webDemo.entity.Page;
-import com.atsjp.webDemo.service.UserService;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- *
+ * 
  * 处理分页获取customers队列
  */
-@WebServlet("/GetPageCustomerServlet")
-public class GetPageCustomerServlet extends HttpServlet {
+@WebServlet("/GetPageCompanyServlet")
+public class GetPageCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Customer> tempCu = new LinkedList<Customer>();
+	private List<Company> tempCu = new LinkedList<Company>();
 	private Page pageService = new Page();
 	private UserService us = new UserService();
 
-	public GetPageCustomerServlet() {
+	public GetPageCompanyServlet() {
 		super();
 	}
 
@@ -38,6 +36,7 @@ public class GetPageCustomerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// 处理从前台传回的数据,first,down，up,last分别表示首页，上一页，下一页,末页，0,1，2，3...表示第几页
+		System.out.println("调用GetPageCompanyServlet...");
 		String page = "";
 		try {
 			page = request.getParameter("page");
@@ -78,7 +77,7 @@ public class GetPageCustomerServlet extends HttpServlet {
 		}
 		pageService.setCurrentPage(currentPage);
 		// 进行查找customer信息
-		tempCu = us.getAllCustomer(currentPage, pageSize);
+		tempCu = us.getAllCompany(currentPage, pageSize);
 		// 传回真正逻辑意义上的总记录,总页数,第一页（首页），当前页,开始打印和结束打印页
 		int beginPage = currentPage / pageSize + 1 - 5;// 当前页向前多打印5页
 		int endPage = currentPage / pageSize + 1 + 5;// 当前页向后多打印5页
@@ -96,12 +95,12 @@ public class GetPageCustomerServlet extends HttpServlet {
 		request.setAttribute("beginPage", beginPage);
 		request.setAttribute("endPage", endPage);
 		if (!tempCu.isEmpty()) {
-			request.setAttribute("CustomerList", tempCu);
-			request.getRequestDispatcher("./manager/getAllCustomer.jsp")
+			request.setAttribute("CompanyList", tempCu);
+			request.getRequestDispatcher("./manager/getAllCompany.jsp")
 					.forward(request, response);
 		} else {
-			request.setAttribute("CustomerList", null);
-			request.getRequestDispatcher("./manager/getAllCustomer.jsp")
+			request.setAttribute("CompanyList", null);
+			request.getRequestDispatcher("./manager/getAllCompany.jsp")
 					.forward(request, response);
 		}
 	}

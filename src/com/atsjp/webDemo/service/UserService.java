@@ -3,8 +3,10 @@ package com.atsjp.webDemo.service;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.atsjp.webDemo.dao.CompanyDao;
 import com.atsjp.webDemo.dao.CustomerDao;
 import com.atsjp.webDemo.dao.Userdao;
+import com.atsjp.webDemo.entity.Company;
 import com.atsjp.webDemo.entity.Customer;
 import com.atsjp.webDemo.entity.User;
 
@@ -15,7 +17,9 @@ import com.atsjp.webDemo.entity.User;
 public class UserService {
 	Userdao ud = new Userdao();
 	CustomerDao cu = new CustomerDao();
+	CompanyDao companyDao = new CompanyDao();
 	List<Customer> userlist = new LinkedList<Customer>();
+	List<Company> companyList = new LinkedList<Company>();
 
 	/*
 	 * 
@@ -119,5 +123,23 @@ public class UserService {
 		} else {
 			return false;// 手机号码不存在
 		}
+	}
+
+	/*
+	 *
+	 * 根据servlet返回的page、pageSize，进行Company对象的数据库分页查找
+	 */
+	public List<Company> getAllCompany(int page, int pageSize) {
+		companyList = companyDao.page(page, pageSize);
+		return companyList;
+	}
+
+	/*
+	 *
+	 * 根据servlet返回的Company的name或者phone值，到dao层查找并且返回查询情况
+	 */
+	public Company getCompany(Company company) {
+		company = companyDao.getCompany(company);
+		return company;
 	}
 }

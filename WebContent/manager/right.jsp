@@ -20,7 +20,7 @@
 	<br>
 	<br>
 	<center>
-		<font size=8 color="#FFFFFF">欢迎${sessionScope.user.name}进入客户信息管理系统，</font>
+		<font size=8 color="#FFFFFF">欢迎 ${sessionScope.user.name} 进入客户信息管理系统，</font>
 	</center>
 	<center>
 		<font size=8 color="#FFFFFF">请点击左侧菜单栏进行操作！</font>

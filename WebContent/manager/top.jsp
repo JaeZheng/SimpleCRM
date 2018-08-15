@@ -11,7 +11,7 @@
 </head>
 <body>
 	<center>
-		<br> <br> <font color="#FFFFFF" size=20> 客户信息管理系统 </font>
+		<br> <br> <font color="#FFFFFF" size=20> 宇丰咨询客户信息管理系统 </font>
 	</center>
 </body>
 </html>
