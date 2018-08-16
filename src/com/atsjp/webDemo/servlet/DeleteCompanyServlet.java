@@ -37,7 +37,7 @@ public class DeleteCompanyServlet extends HttpServlet {
 		Company tempC = new Company();
 		tempC.setCompanyname(companyname);
 		boolean deleteResult = us.deleteCompany(tempC);
-        page.getNew();
+        page.getCompanyNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();
         int totalCount = page.getTotalCount();

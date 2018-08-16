@@ -1,6 +1,6 @@
 package com.atsjp.webDemo.servlet;
 
-import com.atsjp.webDemo.entity.Company;
+import com.atsjp.webDemo.entity.Contract;
 import com.atsjp.webDemo.entity.Page;
 import com.atsjp.webDemo.service.UserService;
 
@@ -17,14 +17,14 @@ import java.util.List;
  * 
  * 处理分页获取customers队列
  */
-@WebServlet("/GetPageCompanyServlet")
-public class GetPageCompanyServlet extends HttpServlet {
+@WebServlet("/GetPageContractServlet")
+public class GetPageContractServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Company> tempCu = new LinkedList<Company>();
+	private List<Contract> tempCu = new LinkedList<Contract>();
 	private Page pageService = new Page();
 	private UserService us = new UserService();
 
-	public GetPageCompanyServlet() {
+	public GetPageContractServlet() {
 		super();
 	}
 
@@ -44,7 +44,7 @@ public class GetPageCompanyServlet extends HttpServlet {
 			page = "0";
 		}
 		// 检查数据库是否有更新，并且更新
-		pageService.getCompanyNew();
+		pageService.getContractNew();
 		// 维护当前页
 		int pageSize = pageService.getPageSize();
 		int currentPage = pageService.getCurrentPage();
@@ -76,7 +76,7 @@ public class GetPageCompanyServlet extends HttpServlet {
 		}
 		pageService.setCurrentPage(currentPage);
 		// 进行查找company信息
-		tempCu = us.getAllCompany(currentPage, pageSize);
+		tempCu = us.getAllContract(currentPage, pageSize);
 		// 传回真正逻辑意义上的总记录,总页数,第一页（首页），当前页,开始打印和结束打印页
 		int beginPage = currentPage / pageSize + 1 - 5;// 当前页向前多打印5页
 		int endPage = currentPage / pageSize + 1 + 5;// 当前页向后多打印5页
@@ -94,12 +94,12 @@ public class GetPageCompanyServlet extends HttpServlet {
 		request.setAttribute("beginPage", beginPage);
 		request.setAttribute("endPage", endPage);
 		if (!tempCu.isEmpty()) {
-			request.setAttribute("CompanyList", tempCu);
-			request.getRequestDispatcher("./manager/getAllCompany.jsp")
+			request.setAttribute("ContractList", tempCu);
+			request.getRequestDispatcher("./manager/getAllContract.jsp")
 					.forward(request, response);
 		} else {
-			request.setAttribute("CompanyList", null);
-			request.getRequestDispatcher("./manager/getAllCompany.jsp")
+			request.setAttribute("ContractList", null);
+			request.getRequestDispatcher("./manager/getAllContract.jsp")
 					.forward(request, response);
 		}
 	}

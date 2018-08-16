@@ -1,6 +1,7 @@
 package com.atsjp.webDemo.entity;
 
-//import com.atsjp.webDemo.dao.CustomerDao;
+import com.atsjp.webDemo.dao.ContractDao;
+import com.atsjp.webDemo.dao.CustomerDao;
 import com.atsjp.webDemo.dao.CompanyDao;
 
 public class Page {
@@ -8,6 +9,8 @@ public class Page {
 	private int TotalCount = 0;// 总记录数
 	private int CurrentPage = 0;// 当前页
 	private int PageSize = 7; // 每页显示数据默认7
+	CompanyDao companyDao = new CompanyDao();
+	ContractDao contractDao = new ContractDao();
 
 	public Page() {// 创建的时候，初始化Page，TotalCount
 		super();
@@ -21,9 +24,10 @@ public class Page {
 		TotalCount = totalCount;
 	}
 
-	public boolean getNew() {// 获取最新的数据库信息
+	// 获取customer最新的数据库信息
+	public boolean getNew() {
 		try {
-			this.TotalCount = new CompanyDao().getCount();
+			this.TotalCount = new CustomerDao().getCount();
 			double dtc = (double) TotalCount;
 			double dps = (double) PageSize;
 			this.Page = (int) Math.ceil(dtc / dps);
@@ -32,6 +36,32 @@ public class Page {
 			return false;
 		}
 	}
+
+	// 获取company最新的数据库信息
+	public boolean getCompanyNew() {
+		try {
+			this.TotalCount = companyDao.getCount();
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+    // 获取contract最新的数据库信息
+    public boolean getContractNew() {
+        try {
+            this.TotalCount = contractDao.getCount();
+            double dtc = (double) TotalCount;
+            double dps = (double) PageSize;
+            this.Page = (int) Math.ceil(dtc / dps);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 	public int getPage() {
 		return Page;

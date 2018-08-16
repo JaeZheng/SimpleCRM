@@ -31,7 +31,6 @@ public class AddCompanyServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("调用AddCompanyServlet doPost...");
 		request.setCharacterEncoding("UTF-8");// 设置解码方式
 		String key = request.getParameter("method");
 		if ("checkNameExist".equals(key)) {

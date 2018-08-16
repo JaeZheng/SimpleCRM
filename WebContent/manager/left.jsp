@@ -28,6 +28,11 @@
 		</tr>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/GetPageContractServlet?page=0"
+					target="mainFrame" class="xyz">全部合同信息</a></td>
+		</tr>
+		<tr>
+			<td><a
 					href="<%=request.getContextPath()%>/manager/aboutUs.jsp"
 					target="mainFrame">关于我们</a></td>
 		</tr>

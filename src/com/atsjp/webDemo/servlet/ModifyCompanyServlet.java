@@ -35,11 +35,6 @@ public class ModifyCompanyServlet extends HttpServlet {
 		String linkman = request.getParameter("linkman");
 		String linkphone = request.getParameter("linkphone");
 		String address = request.getParameter("address");
-		System.out.println("id: " + id);
-		System.out.println("companyname: " + companyname);
-		System.out.println("linkman: " + linkman);
-		System.out.println("linkphone: " + linkphone);
-		System.out.println("address: " + address);
 		Company tempC = new Company(id, companyname, linkman, linkphone, address);
 		UserService us = new UserService();
 		if (us.modifyCompany(tempC)) {

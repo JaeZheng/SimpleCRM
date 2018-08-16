@@ -4,9 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.atsjp.webDemo.dao.CompanyDao;
+import com.atsjp.webDemo.dao.ContractDao;
 import com.atsjp.webDemo.dao.CustomerDao;
 import com.atsjp.webDemo.dao.Userdao;
 import com.atsjp.webDemo.entity.Company;
+import com.atsjp.webDemo.entity.Contract;
 import com.atsjp.webDemo.entity.Customer;
 import com.atsjp.webDemo.entity.User;
 
@@ -18,8 +20,10 @@ public class UserService {
 	Userdao ud = new Userdao();
 	CustomerDao cu = new CustomerDao();
 	CompanyDao companyDao = new CompanyDao();
+	ContractDao contractDao = new ContractDao();
 	List<Customer> userlist = new LinkedList<Customer>();
 	List<Company> companyList = new LinkedList<Company>();
+	List<Contract> contractList = new LinkedList<Contract>();
 
 	/*
 	 * 
@@ -151,9 +155,9 @@ public class UserService {
         company.setCompanyname(companyName);
         Company tempc = companyDao.getCompany(company);
         if (tempc.getCompanyname() != null && tempc.getCompanyname() != "") {
-            return true;// 姓名已存在
+            return true;// 公司名称已存在
         } else {
-            return false;// 姓名不存在
+            return false;// 公司名称不存在
         }
     }
 
@@ -166,9 +170,9 @@ public class UserService {
         company.setLinkphone(linkPhone);
         Company tempc = companyDao.getCompany(company);
         if (tempc.getCompanyname() != null && tempc.getCompanyname() != "") {
-            return true;// 手机号码已存在
+            return true;// 联系电话已存在
         } else {
-            return false;// 手机号码不存在
+            return false;// 联系电话不存在
         }
     }
 
@@ -207,4 +211,13 @@ public class UserService {
             return false;
         }
     }
+
+	/*
+     *
+     * 根据servlet返回的page、pageSize，进行Contract对象的数据库分页查找
+     */
+	public List<Contract> getAllContract(int page, int pageSize) {
+		contractList = contractDao.page(page, pageSize);
+		return contractList;
+	}
 }

@@ -68,7 +68,6 @@ public class CustomerDao implements CustomerDaoInter {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, customer.getCname());
-//			System.out.println(customer.getCname());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
