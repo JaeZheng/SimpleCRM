@@ -33,6 +33,11 @@
 		</tr>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/manager/addContract.jsp"
+					target="mainFrame">增加合同</a></td>
+		</tr>
+		<tr>
+			<td><a
 					href="<%=request.getContextPath()%>/manager/aboutUs.jsp"
 					target="mainFrame">关于我们</a></td>
 		</tr>

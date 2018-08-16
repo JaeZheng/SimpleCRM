@@ -220,4 +220,16 @@ public class UserService {
 		contractList = contractDao.page(page, pageSize);
 		return contractList;
 	}
+
+	/*
+	 *
+	 * 根据servlet返回的Contract对象，添加Contract的对象到数据库中
+	 */
+	public boolean addContract(Contract contract) {
+		if (contractDao.addContract(contract)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
