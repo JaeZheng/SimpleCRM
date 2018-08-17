@@ -18,12 +18,12 @@
 	User user = (User) s.getAttribute("user");
 	System.out.println(user.toString());
 --%>
-<frameset rows="185,*" cols="*" frameborder="1" border="2"
+<frameset rows="130,*" cols="*" frameborder="1" border="2"
 	framespacing="5">
 	<frame src="<%=request.getContextPath()%>/manager/top.jsp"
 		name="topFrame" scrolling="no" noresize="noresize">
 
-	<frameset rows="*" cols="250,*" frameborder="1" border="2">
+	<frameset rows="*" cols="180,*" frameborder="1" border="2">
 		<frame src="<%=request.getContextPath()%>/manager/left.jsp"
 			name="leftFrame" scrolling="no" noresize="noresize">
 		<frame src="<%=request.getContextPath()%>/manager/right.jsp"

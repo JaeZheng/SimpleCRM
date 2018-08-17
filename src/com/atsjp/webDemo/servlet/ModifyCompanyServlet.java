@@ -43,7 +43,7 @@ public class ModifyCompanyServlet extends HttpServlet {
 			request.getRequestDispatcher("./manager/modifyCompanyResult.jsp")
 					.forward(request, response);
 		} else {
-			request.setAttribute("message", "修改失败，请尝试重新搜索是否有该用户或者再次尝试。");
+			request.setAttribute("message", "修改失败，请尝试重新搜索是否有该客户或者再次尝试。");
 			request.setAttribute("ResultCName", tempC.getCompanyname());
 			request.getRequestDispatcher("./manager/modifyCompanyResult.jsp")
 					.forward(request, response);

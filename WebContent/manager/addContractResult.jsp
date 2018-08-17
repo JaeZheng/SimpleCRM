@@ -7,23 +7,14 @@
 <title>Insert title here</title>
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/main.css" />
+	href="<%=request.getContextPath()%>/css/addC.css" />
 </head>
 <body>
+	<font color="FFFFFF">${requestScope.message}</font>
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<center>
-		<font size=6 color="#FFFFFF">欢迎 ${sessionScope.user.name} 进入客户信息管理系统，</font>
-	</center>
-	<center>
-		<font size=6 color="#FFFFFF">请点击左侧菜单栏进行操作！</font>
-	</center>
+	<a href="<%=request.getContextPath()%>/manager/addContract.jsp">返回继续添加合同</a>
+	<a href="<%=request.getContextPath()%>/GetPageContractServlet?page=0">查看已添加的合同信息</a>
 </body>
 </html>

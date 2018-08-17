@@ -202,7 +202,7 @@ public class UserService {
 
     /*
 	 *
-	 * 删除company对应Customer的信息
+	 * 删除company对应Company的信息
 	 */
     public boolean deleteCompany(Company company) {
         if (companyDao.deleteCompany(company)) {
@@ -232,4 +232,37 @@ public class UserService {
 			return false;
 		}
 	}
+
+	/*
+	 *
+	 * 删除contract对应Contract的信息
+	 */
+	public boolean deleteContract(Contract contract) {
+		if (contractDao.deleteContract(contract)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+    /*
+     *
+     * 根据servlet返回的Contract的invoicenumber值，到dao层查找并且返回查询情况
+     */
+    public Contract getContract(Contract contract) {
+        contract = contractDao.getContract(contract);
+        return contract;
+    }
+
+    /*
+	 *
+	 * 根据servlet返回的Contract的信息，到dao层更新contract信息
+	 */
+    public boolean modifyContract(Contract contract) {
+        if (contractDao.modifyContract(contract)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -69,6 +69,16 @@ public class ContractDao implements ContractDaoInter {
 		String sql = "update contract set contracttime=?,contractname=?,invoicetitle=?,address=?,contractcontent=?," +
                 "invoicedetail=?,invoicetime=?,invoicenumber=?,invoiceamount=? where id=?";
 		try {
+		    System.out.println("DAO层拿到的id：" + contract.getId());
+		    System.out.println("getContracttime: "+contract.getContracttime());
+		    System.out.println("getContractname: "+contract.getContractname());
+		    System.out.println("getInvoicetitle: "+contract.getInvoicetitle());
+		    System.out.println("getAddress: "+contract.getAddress());
+		    System.out.println("getContractcontent: "+contract.getContractcontent());
+		    System.out.println("getInvoicedetail: "+contract.getInvoicedetail());
+		    System.out.println("getInvoicetime: "+contract.getInvoicetime());
+		    System.out.println("getInvoicenumber: "+contract.getInvoicenumber());
+		    System.out.println("getInvoiceamount: "+contract.getInvoiceamount());
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, contract.getContracttime());
 			ps.setString(2, contract.getContractname());
@@ -96,22 +106,17 @@ public class ContractDao implements ContractDaoInter {
 		Contract tempC = new Contract();
 		String index = "";
 		String sql = "";
-		boolean flag = false;
-		if (contract.getInvoicetitle() != null && !contract.getInvoicetitle().equals("")) {// 如果两者都有优先invoicetitle查找
-			index = contract.getInvoicetitle();
-			flag = true; // 用于标记index被赋予了invoicetitle
-		} else if (contract.getInvoicenumber() != null
+
+		if (contract.getInvoicenumber() != null
 				&& !contract.getInvoicenumber().equals("")) {
 			index = contract.getInvoicenumber();
-			flag = false;// 用于标记index被赋予了invoicenumber
 		}
-		if (!index.equals("") && flag) {
-			sql = "select * from contract where invoicetitle=?";
-		} else if (!index.equals("") && !flag) {
+		if (!index.equals("")) {
 			sql = "select * from contract where invoicenumber=?";
 		} else {
 			return null;
 		}
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, index);

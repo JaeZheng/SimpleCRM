@@ -60,12 +60,12 @@ public class AddContractServlet extends HttpServlet {
 		if (us.addContract(tempC)) {
 			request.setAttribute("message", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addContractResult.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			request.setAttribute("message", "添加失败！请修改公司名称或联系电话后再次尝试！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addContractResult.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
