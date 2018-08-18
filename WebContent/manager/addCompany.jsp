@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/addC.css" />
+	href="<%=request.getContextPath()%>/css/addCompany.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
@@ -40,7 +40,7 @@
 
 		// 检查重复名
 		$("#companyname").blur( function() {
-							var reg = /^[\u4e00-\u9fa5]{1,5}$/;
+							var reg = /^[\u4e00-\u9fa5]{1,100}$/;
 							if (!reg.test(this.value)) {
 								this.focus();
 								$("#result").html("");

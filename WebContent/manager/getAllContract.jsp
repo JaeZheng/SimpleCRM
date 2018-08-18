@@ -23,7 +23,7 @@
 		</c:if>
 		<c:if test="${empty deleteResult}">
 			<center>
-				<font color="#FFF">信息记录为空，请添加数据后在查看！</font>
+				<font color="#FFF">信息记录为空，请添加数据后再查看！</font>
 			</center>
 		</c:if>
 	</c:if>

@@ -146,6 +146,15 @@ public class UserService {
 		return company;
 	}
 
+	/*
+	 *
+	 * 根据servlet返回的index值，到dao层查找并且返回查询情况
+	 */
+	public List<Company> queryCompany(String index){
+	    List<Company> queryCompanyList = companyDao.queryCompany(index);
+	    return queryCompanyList;
+    }
+
     /*
      *
      * 根据servlet返回的companyName的信息，到dao层查看company信息是否存在

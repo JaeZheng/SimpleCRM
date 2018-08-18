@@ -23,8 +23,8 @@
 		</tr>
 		<tr>
 			<td><a
-				href="<%=request.getContextPath()%>/manager/modifyCompany.jsp"
-				target="mainFrame">修改客户</a></td>
+				href="<%=request.getContextPath()%>/manager/queryCompany.jsp"
+				target="mainFrame">查询客户</a></td>
 		</tr>
 		<tr>
 			<td><a

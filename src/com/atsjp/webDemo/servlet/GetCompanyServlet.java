@@ -46,21 +46,7 @@ public class GetCompanyServlet extends HttpServlet {
 			// 由于跳转过来的编码方式不确定，可能出现encoding无值
 		}
 		if (index != "" && index != null) {
-			// 判断index是姓名还是手机号码
-			boolean flag = false;
-			for (int i = 0; i < index.length(); i++) {
-				flag = Character.isDigit(index.charAt(i));
-				if (!flag) {
-					break;
-				}
-			}
-			if (!flag) {
-				tempC.setCompanyname(index);
-				tempC.setLinkphone(null);
-			} else {
-				tempC.setCompanyname(null);
-				tempC.setLinkphone(index);
-			}
+			tempC.setCompanyname(index);
 			// 取出Company返回给jsp
 			ResultC = us.getCompany(tempC);
 			if (ResultC.getId() != null) {

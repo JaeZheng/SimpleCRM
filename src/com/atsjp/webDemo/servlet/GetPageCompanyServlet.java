@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 
- * 处理分页获取customers队列
+ * 处理分页获取company队列
  */
 @WebServlet("/GetPageCompanyServlet")
 public class GetPageCompanyServlet extends HttpServlet {

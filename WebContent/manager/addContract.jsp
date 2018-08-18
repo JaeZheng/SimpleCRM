@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/addC.css" />
+	href="<%=request.getContextPath()%>/css/addContract.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
 <script type="text/javascript">

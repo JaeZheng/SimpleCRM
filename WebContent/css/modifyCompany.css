@@ -5,15 +5,16 @@ html {
 	height: 100%;
 	overflow: hidden;
 	font-style: sans-serif;
+	padding: 50px;
+	pacci margin: 0;
 }
 
 body {
-	width: 95%;
-	height: 100%;
-	font-family: 'trebuchet MS', 'Lucida sans', Arial;
-	font-size: 14px;
+	width: 90%;
+	height: 90%;
+	font-family: 'Open Sans', sans-serif;
 	color: #444;
-	margin: 40px auto;
+	margin: 0;
 	background-image: url('../image/bg.jpg');
 	background-repeat: repeat;
 	background-origin: border-box;
@@ -21,12 +22,24 @@ body {
 	background-attachment: fixed;
 }
 
-table {
-	/* IE7 and lower */
-	border-spacing: 0;
-	width: 100%;
+table,td,th {
+	text-align: center;
+	padding: 10px 10px 10px 10px;
 	margin: 0 auto;
 	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+	border-spacing: 0;
+}
+
+table {
+	height: 100%;
+	width: 100%;
+	margin: 0px auto;
+}
+
+th {
+	height: 20px;
 }
 
 .bordered {
@@ -71,21 +84,60 @@ table {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
 
-.page {
-	text-align: center;
-	margin-top: 50px;
+.input {
+	width: 278px;
+	height: 18px;
+	margin-bottom: 10px;
+	outline: none;
+	padding: 10px;
+	font-size: 15px;
+	color: #fff;
+	border-top: 1px solid #312E3D;
+	border-left: 1px solid #312E3D;
+	border-right: 1px solid #312E3D;
+	border-bottom: 1px solid #56536A;
+	border-radius: 4px;
+	background-color: #2D2D3F;
 }
 
-.page a,.page span {
-	text-decoration: none;
-	border: 1px solid #f9d52b;
-	padding: 5px 7px;
-	color: #FFFFFF;
-	cursor: pointer;
+.input1 {
+	width: 95%;
+	height: 18px;
+	margin: 0 auto;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+	font-size: 15px;
+	color: #000000;
+	background: transparent;
+	border: none;
 }
 
-.page a:hover,.page span:hover {
-	color: orange;
+.but {
+	width: 100px;
+	min-height: 38px;
+	display: inline;
+	background-color: #4a77d4;
+	border: 1px solid #3762bc;
+	color: #fff;
+	padding: 2px 2px;
+	font-size: 15px;
+	line-height: normal;
+	border-radius: 5px;
+	margin: 0;
+}
+
+.but1 {
+	width: 150px;
+	min-height: 38px;
+	display: inline;
+	background-color: #4a77d4;
+	border: 1px solid #3762bc;
+	color: #fff;
+	padding: 2px 2px;
+	font-size: 15px;
+	line-height: normal;
+	border-radius: 5px;
+	margin: 0;
 }
 
 a:link {

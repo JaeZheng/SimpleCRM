@@ -133,6 +133,35 @@ public class CompanyDao implements CompanyDaoInter {
     }
 
     /*
+     *
+     * 根据返回的index值，模糊查询company对象
+     */
+    @Override
+    public List<Company> queryCompany(String index){
+        List<Company> tempc = new LinkedList<Company>();
+        try {
+            String sql1 = "select * from company where companyname like '%"+index+"%'";
+            ps = conn.prepareStatement(sql1);
+            res = ps.executeQuery();
+            while (res.next()) {
+                tempc.add(new Company(res.getString(1), res.getString(2), res
+                        .getString(3), res.getString(4), res.getString(5)));
+            }
+            String sql2 = "select * from company where linkman like '%"+index+"%'";
+            ps = conn.prepareStatement(sql2);
+            res = ps.executeQuery();
+            while (res.next()) {
+                tempc.add(new Company(res.getString(1), res.getString(2), res
+                        .getString(3), res.getString(4), res.getString(5)));
+            }
+            return tempc;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /*
      * 
      * 返回所有company对象
      */

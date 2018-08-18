@@ -23,7 +23,7 @@
 		</c:if>
 		<c:if test="${empty deleteResult}">
 			<center>
-				<font color="#FFF">信息记录为空，请添加数据后在查看！</font>
+				<font color="#FFF">信息记录为空，请添加数据后再查看！</font>
 			</center>
 		</c:if>
 	</c:if>
@@ -44,9 +44,11 @@
 					<td>${item.linkman}</td>
 					<td>${item.linkphone}</td>
 					<td>${item.address}</td>
-					<td><a
-						href="<%=request.getContextPath()%>/DeleteCompanyServlet?companyname=${item.companyname}"
-						class="de">删除</a></td>
+					<td>
+                        <a href="<%=request.getContextPath()%>/GetCompanyServlet?cindex=${item.companyname}"
+                           class="mo">修改</a>
+                        <a href="<%=request.getContextPath()%>/DeleteCompanyServlet?companyname=${item.companyname}"
+                           class="de">删除</a></td>
 					<!-- 注意url传值中文乱码 -->
 				</tr>
 			</c:forEach>

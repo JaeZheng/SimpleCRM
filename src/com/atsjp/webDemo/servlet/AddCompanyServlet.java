@@ -51,7 +51,7 @@ public class AddCompanyServlet extends HttpServlet {
 	protected void checkNameExist(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String customerName = request.getParameter("customerName");
+		String customerName = request.getParameter("companyName");
 		boolean exist = us.checkCompanyNameExist(customerName);
 		if (exist) {
 			response.getWriter().write("true"); // ´æÔÚ
@@ -67,7 +67,7 @@ public class AddCompanyServlet extends HttpServlet {
 	protected void checkPhoneExist(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String customerPhone = request.getParameter("customerPhone");
+		String customerPhone = request.getParameter("linkPhone");
 		boolean exist = us.checkLinkPhoneExist(customerPhone);
 		if (exist) {
 			response.getWriter().write("true");// ´æÔÚ
