@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,16 +70,6 @@ public class ContractDao implements ContractDaoInter {
 		String sql = "update contract set contracttime=?,contractname=?,invoicetitle=?,address=?,contractcontent=?," +
                 "invoicedetail=?,invoicetime=?,invoicenumber=?,invoiceamount=? where id=?";
 		try {
-		    System.out.println("DAO层拿到的id：" + contract.getId());
-		    System.out.println("getContracttime: "+contract.getContracttime());
-		    System.out.println("getContractname: "+contract.getContractname());
-		    System.out.println("getInvoicetitle: "+contract.getInvoicetitle());
-		    System.out.println("getAddress: "+contract.getAddress());
-		    System.out.println("getContractcontent: "+contract.getContractcontent());
-		    System.out.println("getInvoicedetail: "+contract.getInvoicedetail());
-		    System.out.println("getInvoicetime: "+contract.getInvoicetime());
-		    System.out.println("getInvoicenumber: "+contract.getInvoicenumber());
-		    System.out.println("getInvoiceamount: "+contract.getInvoiceamount());
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, contract.getContracttime());
 			ps.setString(2, contract.getContractname());
@@ -132,6 +123,87 @@ public class ContractDao implements ContractDaoInter {
 			return null;
 		}
 	}
+
+    /*
+     *
+     * 根据返回的index值，模糊查询company对象个数
+     */
+    @Override
+    public int queryContractCount(String index){
+        int count = 0;
+        try {
+            String sql1 = "select * from contract where contractname like '%"+index+"%'";
+            ps = conn.prepareStatement(sql1);
+            res = ps.executeQuery();
+            List<String> invoices = new ArrayList<String>();
+            while(res.next()){
+                String tmp = res.getString("invoicenumber");
+                invoices.add(tmp);
+                count ++;
+            }
+            String sql2 = "select * from contract where invoicetitle like '%"+index+"%'";
+            ps = conn.prepareStatement(sql2);
+            res = ps.executeQuery();
+            while(res.next()){
+                String tmp = res.getString("invoicenumber");
+                if(!invoices.contains(tmp)){
+                    invoices.add(tmp);
+                    count ++;
+                }
+            }
+            return count;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /*
+     *
+     * 根据返回的index值，模糊查询company对象
+     */
+    @Override
+    public List<Contract> queryContractList(String index, int page, int pageSize){
+        List<Contract> tempc = new ArrayList<Contract>();
+        try {
+            String sql1 = "select * from contract where contractname like '%"+index+"%'";
+            ps = conn.prepareStatement(sql1);
+            res = ps.executeQuery();
+            List<String> invoices = new ArrayList<String>();
+            while (res.next()) {
+                String tmp = res.getString("invoicenumber");
+                invoices.add(tmp);
+                tempc.add(new Contract(res.getString(1), res.getString(2),
+                        res.getString(3), res.getString(4), res.getString(5),
+                        res.getString(6), res.getString(7), res.getString(8),
+                        res.getString(9), res.getString(10)));
+            }
+            String sql2 = "select * from contract where invoicetitle like '%"+index+"%'";
+            ps = conn.prepareStatement(sql2);
+            res = ps.executeQuery();
+            while (res.next()) {
+                String tmp = res.getString("invoicenumber");
+                if(!invoices.contains(tmp)){
+                    invoices.add(tmp);
+                    tempc.add(new Contract(res.getString(1), res.getString(2),
+                            res.getString(3), res.getString(4), res.getString(5),
+                            res.getString(6), res.getString(7), res.getString(8),
+                            res.getString(9), res.getString(10)));
+                }
+            }
+            List<Contract> ppage= new ArrayList<Contract>();
+            for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
+                if(i < tempc.size()) {
+                    ppage.add(tempc.get(i));
+                }
+            }
+            return ppage;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 	/*
 	 * 

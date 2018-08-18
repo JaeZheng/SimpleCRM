@@ -17,6 +17,21 @@
 						function() {
 							return true;
 						});
+        //检查重复发票编号
+        $("#invoicenumber").blur( function() {
+            var url = "${pageContext.request.contextPath}/AddCompanyServlet";
+            $.post(url,{
+                    method : "checkInvoiceExist",
+                    invoiceNumber : this.value
+                },
+                function(data) {
+                    if (data == "true") {
+                        $("#result1").html("&nbsp;<font color='red'>此发票编号已存在</font>");
+                    } else {
+                        $("#result1").html("&nbsp;<font color='blue'>此发票编号可用</font>");
+                    }
+                });
+        });
 	});
 </script>
 </head>

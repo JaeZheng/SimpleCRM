@@ -33,11 +33,28 @@ public class AddContractServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");// 设置解码方式
 		String key = request.getParameter("method");
+		if ("checkInvoiceExist".equals(key)) {
+		    checkInvoiceExist(request, response);
+        }
 		if ("addContract".equals(key)) {
 			addContract(request, response);
 		}
 	}
 
+    /*
+     *
+     * 2. Ajax请求检查发票编号是否可用
+     */
+    protected void checkInvoiceExist(HttpServletRequest request,
+                               HttpServletResponse response) throws ServletException, IOException {
+        String invoiceNumber = request.getParameter("invoiceNumber");
+        boolean exist = us.checkInvoiceExist(invoiceNumber);
+        if (exist) {
+            response.getWriter().write("true"); // 存在
+        } else {
+            response.getWriter().write("false");// 不存在
+        }
+    }
 	/*
 	 * 
 	 * 3. 添加客户

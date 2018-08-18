@@ -274,4 +274,29 @@ public class UserService {
             return false;
         }
     }
+
+    /*
+	 *
+	 * 根据servlet返回的index值，到dao层查找并且返回查询情况
+	 */
+    public List<Contract> queryContractList(String index, int page, int pageSize){
+        List<Contract> queryContractList = contractDao.queryContractList(index, page, pageSize);
+        return queryContractList;
+    }
+
+    /*
+     *
+     * 根据servlet返回的link的信息，到dao层查看company信息是否存在
+     */
+    public boolean checkInvoiceExist(String invoiceNumber) {
+        Contract contract = new Contract();
+        contract.setInvoicenumber(invoiceNumber);
+        Contract tempc = contractDao.getContract(contract);
+        if (tempc.getContractname() != null && tempc.getContractname() != "") {
+            return true;// 联系电话已存在
+        } else {
+            return false;// 联系电话不存在
+        }
+    }
+
 }

@@ -57,16 +57,16 @@
 </script>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/QueryCompanyServlet"
+	<form action="<%=request.getContextPath()%>/QueryContractServlet"
 		method="post">
 		<fieldset>
 			<legend>
-				<font color="#FFFFFF">客户信息查找栏</font>
+				<font color="#FFFFFF">合同信息查找栏</font>
 			</legend>
 			<table class="enen">
 				<tr>
 					<td><input type="text" class="input"
-						placeholder="请输入你要查询的公司名称或者联系人" id="index" name="cindex">
+						placeholder="请输入你要查询的合同名称或者对应发票抬头" id="index" name="cindex">
 						<input type="submit" class="but" id="buttonbin" value="搜索"></td>
 				</tr>
 			</table>
@@ -76,31 +76,41 @@
 	<br>
 	<fieldset>
 		<legend>
-			<font color="#FFFFFF">客户信息显示栏</font>
+			<font color="#FFFFFF">合同信息显示栏</font>
 		</legend>
 		<c:choose>
-			<c:when test="${empty CompanyList}">
-				<font color="#FFFFFF">您输入的是:${requestScope.result}<br> <br>无相关公司信息，请您检查公司名称或联系人填写是否正确。
+			<c:when test="${empty ContractList}">
+				<font color="#FFFFFF">您输入的是:${requestScope.result}<br> <br>无相关合同信息，请您检查公司名称或联系人填写是否正确。
 				</font>
 			</c:when>
-			<c:when test="${!empty CompanyList}">
+			<c:when test="${!empty ContractList}">
 				<table class="bordered" bgcolor="#FFFFFF">
 					<tr>
-						<td>公司名称</td>
-						<td>联系人</td>
-						<td>联系电话</td>
-						<td>办公地址</td>
+						<td>签合同时间</td>
+						<td>合同名称</td>
+						<td>对应发票抬头</td>
+						<td>公司地址</td>
+						<td>合同内容</td>
+						<td>对应发票明细</td>
+						<td>开票时间</td>
+						<td>发票编号</td>
+						<td>开票金额</td>
 					</tr>
-					<c:forEach items="${CompanyList}" var="item">
+					<c:forEach items="${ContractList}" var="item">
 						<tr>
-							<td>${item.companyname}</td>
-							<td>${item.linkman}</td>
-							<td>${item.linkphone}</td>
+							<td>${item.contracttime}</td>
+							<td>${item.contractname}</td>
+							<td>${item.invoicetitle}</td>
 							<td>${item.address}</td>
+							<td>${item.contractcontent}</td>
+							<td>${item.invoicedetail}</td>
+							<td>${item.invoicetime}</td>
+							<td>${item.invoicenumber}</td>
+							<td>${item.invoiceamount}</td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/GetCompanyServlet?cindex=${item.companyname}"
+                                <a href="<%=request.getContextPath()%>/GetContractServlet?cindex=${item.invoicenumber}"
                                    class="mo">修改</a>
-                                <a href="<%=request.getContextPath()%>/DeleteCompanyServlet?companyname=${item.companyname}"
+                                <a href="<%=request.getContextPath()%>/DeleteContractServlet?id=${item.id}"
                                    class="de">删除</a>
                             </td>
 						</tr>
@@ -108,9 +118,9 @@
 				</table>
                 <div class="page">
                     <a
-                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=first">首页</a>
+                            href="<%=request.getContextPath()%>/QueryContractServlet?page=first">首页</a>
                     <a
-                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=up">上一页</a>
+                            href="<%=request.getContextPath()%>/QueryContractServlet?page=up">上一页</a>
                     <c:if test="${requestScope.beginPage>1}">
                         <a href="#">...</a>
                     </c:if>
@@ -119,12 +129,12 @@
                         <c:choose>
                             <c:when test="${num==requestScope.currentPage}">
                                 <a
-                                        href="<%=request.getContextPath()%>/QueryCompanyServlet?page=${num}"
+                                        href="<%=request.getContextPath()%>/QueryContractServlet?page=${num}"
                                         class="de">${num}</a>
                             </c:when>
                             <c:otherwise>
                                 <a
-                                        href="<%=request.getContextPath()%>/QueryCompanyServlet?page=${num}">${num}</a>
+                                        href="<%=request.getContextPath()%>/QueryContractServlet?page=${num}">${num}</a>
                             </c:otherwise>
                         </c:choose>
 
@@ -133,9 +143,9 @@
                         <a href="#">...</a>
                     </c:if>
                     <a
-                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=down">下一页</a>
+                            href="<%=request.getContextPath()%>/QueryContractServlet?page=down">下一页</a>
                     <a
-                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=last">末页</a>
+                            href="<%=request.getContextPath()%>/QueryContractServlet?page=last">末页</a>
                 </div>
 			</c:when>
 		</c:choose>

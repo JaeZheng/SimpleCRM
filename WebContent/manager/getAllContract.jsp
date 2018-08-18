@@ -54,9 +54,11 @@
 					<td>${item.invoicetime}</td>
 					<td>${item.invoicenumber}</td>
 					<td>${item.invoiceamount}</td>
-					<td><a
-						href="<%=request.getContextPath()%>/DeleteContractServlet?id=${item.id}"
-						class="de">删除</a></td>
+					<td>
+                        <a href="<%=request.getContextPath()%>/GetContractServlet?cindex=${item.invoicenumber}"
+                           class="mo">修改</a>
+						<a href="<%=request.getContextPath()%>/DeleteContractServlet?id=${item.id}"
+                           class="de">删除</a></td>
 					<!-- 注意url传值中文乱码 -->
 				</tr>
 			</c:forEach>

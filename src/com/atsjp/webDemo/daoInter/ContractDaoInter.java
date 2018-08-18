@@ -20,6 +20,12 @@ public interface ContractDaoInter {
     // 返回所有Contract对象
     public List<Contract> page(int page, int pageSize);
 
+    // 返回查询的Contract记录数
+    public int queryContractCount(String index);
+
+    // 返回查询的Contract列表
+    public List<Contract> queryContractList(String index, int page, int pageSize);
+
     // 返回Contract总记录数
     public int getCount();
 }

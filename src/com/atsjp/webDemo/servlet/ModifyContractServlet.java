@@ -30,9 +30,7 @@ public class ModifyContractServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-        System.out.println("进入modifycontractservlet...");
 		String id = request.getParameter("id");
-		System.out.println("拿到contract id 为："+ id);
 		String contracttime = request.getParameter("contracttime");
 		String contractname = request.getParameter("contractname");
 		String invoicetitle = request.getParameter("invoicetitle");
@@ -46,13 +44,11 @@ public class ModifyContractServlet extends HttpServlet {
 		                                invoicedetail, invoicetime, invoicenumber, invoiceamount);
 		UserService us = new UserService();
 		if (us.modifyContract(tempC)) {
-		    System.out.println("修改成功");
 			request.setAttribute("message", "修改成功!");
 			request.setAttribute("ResultInvoicenumber", tempC.getInvoicenumber());
 			request.getRequestDispatcher("./manager/modifyContractResult.jsp")
 					.forward(request, response);
 		} else {
-            System.out.println("修改失败");
 			request.setAttribute("message", "修改失败，请尝试重新搜索是否有该发票编号或者再次尝试。");
 			request.setAttribute("ResultInvoicenumber", tempC.getInvoicenumber());
 			request.getRequestDispatcher("./manager/modifyContractResult.jsp")
