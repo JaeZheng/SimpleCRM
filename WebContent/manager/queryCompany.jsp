@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/modifyCompany.css" />
+	href="<%=request.getContextPath()%>/css/queryCompany.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
@@ -63,7 +63,7 @@
 			<legend>
 				<font color="#FFFFFF">客户信息查找栏</font>
 			</legend>
-			<table>
+			<table class="enen">
 				<tr>
 					<td><input type="text" class="input"
 						placeholder="请输入你要修改的公司名称或者联系人" id="index" name="cindex">
@@ -86,17 +86,17 @@
 			<c:when test="${!empty CompanyList}">
 				<table class="bordered" bgcolor="#FFFFFF">
 					<tr>
-						<td width="200px">公司名称</td>
-						<td width="50px">联系人</td>
-						<td width="100px">联系电话</td>
-						<td width="200px">办公地址</td>
+						<td>公司名称</td>
+						<td>联系人</td>
+						<td>联系电话</td>
+						<td>办公地址</td>
 					</tr>
 					<c:forEach items="${CompanyList}" var="item">
 						<tr>
-							<td width="200px">${item.companyname}</td>
-							<td width="50px">${item.linkman}</td>
-							<td width="100px">${item.linkphone}</td>
-							<td width="200px">${item.address}</td>
+							<td>${item.companyname}</td>
+							<td>${item.linkman}</td>
+							<td>${item.linkphone}</td>
+							<td>${item.address}</td>
                             <td>
                                 <a href="<%=request.getContextPath()%>/GetCompanyServlet?cindex=${item.companyname}"
                                    class="mo">修改</a>
@@ -106,6 +106,37 @@
 						</tr>
 					</c:forEach>
 				</table>
+                <div class="page">
+                    <a
+                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=first">首页</a>
+                    <a
+                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=up">上一页</a>
+                    <c:if test="${requestScope.beginPage>1}">
+                        <a href="#">...</a>
+                    </c:if>
+                    <c:forEach begin="${requestScope.beginPage}"
+                               end="${requestScope.endPage}" var="num">
+                        <c:choose>
+                            <c:when test="${num==requestScope.currentPage}">
+                                <a
+                                        href="<%=request.getContextPath()%>/QueryCompanyServlet?page=${num}"
+                                        class="de">${num}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a
+                                        href="<%=request.getContextPath()%>/QueryCompanyServlet?page=${num}">${num}</a>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </c:forEach>
+                    <c:if test="${endPage < lastPage}">
+                        <a href="#">...</a>
+                    </c:if>
+                    <a
+                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=down">下一页</a>
+                    <a
+                            href="<%=request.getContextPath()%>/QueryCompanyServlet?page=last">末页</a>
+                </div>
 			</c:when>
 		</c:choose>
 </body>

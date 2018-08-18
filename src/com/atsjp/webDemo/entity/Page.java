@@ -37,6 +37,19 @@ public class Page {
 		}
 	}
 
+	// 查询满足条件的company个数
+	public boolean queryCompanyCount(String index){
+		try {
+			this.TotalCount = companyDao.queryCompanyCount(index);
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e){
+			return false;
+		}
+	}
+
 	// 获取company最新的数据库信息
 	public boolean getCompanyNew() {
 		try {

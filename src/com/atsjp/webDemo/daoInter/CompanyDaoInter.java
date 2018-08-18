@@ -21,7 +21,10 @@ public interface CompanyDaoInter {
     public List<Company> page(int page, int pageSize);
 
     // 返回查询的Company列表
-    public List<Company> queryCompany(String index);
+    public List<Company> queryCompanyList(String index, int page, int pageSize);
+
+    // 返回查询的Company个数
+    public int queryCompanyCount(String index);
 
     // 返回Company总记录数
     public int getCount();

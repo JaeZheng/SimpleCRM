@@ -51,12 +51,12 @@ public class AddCompanyServlet extends HttpServlet {
 	protected void checkNameExist(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String customerName = request.getParameter("companyName");
-		boolean exist = us.checkCompanyNameExist(customerName);
+		String companyName = request.getParameter("companyName");
+		boolean exist = us.checkCompanyNameExist(companyName);
 		if (exist) {
 			response.getWriter().write("true"); // 存在
 		} else {
-			response.getWriter().write("flase");// 不存在
+			response.getWriter().write("false");// 不存在
 		}
 	}
 
@@ -67,12 +67,12 @@ public class AddCompanyServlet extends HttpServlet {
 	protected void checkPhoneExist(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String customerPhone = request.getParameter("linkPhone");
-		boolean exist = us.checkLinkPhoneExist(customerPhone);
+		String linkPhone = request.getParameter("linkPhone");
+		boolean exist = us.checkLinkPhoneExist(linkPhone);
 		if (exist) {
 			response.getWriter().write("true");// 存在
 		} else {
-			response.getWriter().write("flase");// 不存在
+			response.getWriter().write("false");// 不存在
 		}
 	}
 

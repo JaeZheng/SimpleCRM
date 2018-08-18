@@ -40,7 +40,7 @@
 
 		// 检查重复名
 		$("#companyname").blur( function() {
-							var reg = /^[\u4e00-\u9fa5]{1,100}$/;
+							var reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,100}$/;
 							if (!reg.test(this.value)) {
 								this.focus();
 								$("#result").html("");
@@ -49,7 +49,7 @@
 								var url = "${pageContext.request.contextPath}/AddCompanyServlet";
 								$.post(url,{
 											method : "checkNameExist",
-											customerName : this.value
+											companyName : this.value
 											},
 										function(data) {
 											if (data == "true") {
@@ -63,20 +63,20 @@
 
 		//检查重复手机号码
 		$("#linkphone").blur( function() {
-				var reg = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
+				var reg = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)/;
 				if (!reg.test(this.value)) {
 					this.focus();
-					$("#result1").html("");
+					$("#result1").html("&nbsp;<font color='red'>联系电话格式不正确</font>");
 					return false;
 				} else {
 					var url = "${pageContext.request.contextPath}/AddCompanyServlet";
 					$.post(url,{
 								method : "checkPhoneExist",
-								customerPhone : this.value
+								linkPhone : this.value
 								},
 							function(data) {
 								if (data == "true") {
-									("#result1").html("&nbsp;<font color='red'>此联系电话已存在</font>");
+									$("#result1").html("&nbsp;<font color='red'>此联系电话已存在</font>");
 								} else {
 									$("#result1").html("&nbsp;<font color='blue'>此联系电话可用</font>");
 								}

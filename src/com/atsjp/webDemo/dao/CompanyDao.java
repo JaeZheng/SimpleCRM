@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -137,8 +138,8 @@ public class CompanyDao implements CompanyDaoInter {
      * 根据返回的index值，模糊查询company对象
      */
     @Override
-    public List<Company> queryCompany(String index){
-        List<Company> tempc = new LinkedList<Company>();
+    public List<Company> queryCompanyList(String index, int page, int pageSize){
+        List<Company> tempc = new ArrayList<Company>();
         try {
             String sql1 = "select * from company where companyname like '%"+index+"%'";
             ps = conn.prepareStatement(sql1);
@@ -154,10 +155,41 @@ public class CompanyDao implements CompanyDaoInter {
                 tempc.add(new Company(res.getString(1), res.getString(2), res
                         .getString(3), res.getString(4), res.getString(5)));
             }
-            return tempc;
+            List<Company> ppage= new ArrayList<Company>();
+            for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
+                if(i < tempc.size()) {
+                    ppage.add(tempc.get(i));
+                }
+            }
+            return ppage;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /*
+     *
+     * 根据返回的index值，模糊查询company对象个数
+     */
+    @Override
+    public int queryCompanyCount(String index){
+        int count = 0;
+        try {
+            String sql1 = "select * from company where companyname like '%"+index+"%'";
+            ps = conn.prepareStatement(sql1);
+            res = ps.executeQuery();
+            while(res.next())
+                count ++;
+            String sql2 = "select * from company where linkman like '%"+index+"%'";
+            ps = conn.prepareStatement(sql2);
+            res = ps.executeQuery();
+            while(res.next())
+                count ++;
+            return count;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return 0;
         }
     }
 
