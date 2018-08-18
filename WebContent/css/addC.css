@@ -25,10 +25,15 @@ body {
 table,td,th {
 	text-align: left;
 	padding: 5px 5px 10px 10px;
+	font-size: 20px;
 }
 
 th {
 	height: 20px;
+}
+
+input[type="text"] {
+    font-size:20px;
 }
 
 .but {
