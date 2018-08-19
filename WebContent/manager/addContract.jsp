@@ -39,7 +39,7 @@
 	<form method="post"
 		action="<%=request.getContextPath()%>/AddContractServlet?method=addContract">
 		<fieldset>
-			<legend>客户信息</legend>
+			<legend>合同信息</legend>
 			<table align="center">
 				<tr>
 					<td>签合同时间(*):</td>
