@@ -47,7 +47,7 @@ CREATE TABLE `contract` (
   `contractcontent` varchar(50) NOT NULL,
   `invoicedetail` varchar(20) NOT NULL,
   `invoicetime` varchar(20) NOT NULL,
-  `invoicenumber` varchar(20) NOT NULL,
+  `invoicenumber` varchar(100) NOT NULL,
   `invoiceamount` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
