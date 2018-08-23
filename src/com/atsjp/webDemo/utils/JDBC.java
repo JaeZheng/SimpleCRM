@@ -1,9 +1,7 @@
 package com.atsjp.webDemo.utils;
 
 import javax.servlet.annotation.WebServlet;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /*
  * 
@@ -18,19 +16,19 @@ public class JDBC {
 	// Database credentials -- 数据库名和密码自己修改
 	private static final String USER = "root";
 	private static final String PASS = "root";
-	private static Connection conn;
 
 	/*
 	 * 
 	 * 获得Connection连接对象
 	 */
-	public static Connection getConnection() {
-		try {
+	public static synchronized Connection getConnection() {
+        Connection conn = null;
+	    try {
 //			Class.forName(JDBC_DRIVER);
 //			conn = DriverManager.getConnection(DB_URL, USER, PASS);
             // 改用proxool连接池，解决tomcat与数据库空闲连接过期问题
 			Class.forName(PROXOOL_DRIVER);
-			conn = DriverManager.getConnection(PROXOOL_POOL);
+            conn = DriverManager.getConnection(PROXOOL_POOL);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,16 +43,42 @@ public class JDBC {
 	 * 
 	 * 释放Connection连接对象
 	 */
-	public static boolean closeConnection() {
-		try {
-			if (conn != null) {
-				conn.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+//	public static boolean closeConnection() {
+//		try {
+//			if (conn != null) {
+//				conn.close();
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return true;
+//	}
+
+    /**
+     * 关闭连接
+     *
+     * @param conn
+     * @param pstmt
+     * @param rs
+     */
+    public static void closeAll(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 }

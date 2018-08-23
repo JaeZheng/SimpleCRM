@@ -25,6 +25,7 @@ public class ContractDao implements ContractDaoInter {
 	public boolean addContract(Contract contract) {
 		try {
 			String sql = "insert into contract values(?,?,?,?,?,?,?,?,?,?)";
+			conn =JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, contract.getId());
 			ps.setString(2, contract.getContracttime());
@@ -41,7 +42,9 @@ public class ContractDao implements ContractDaoInter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 
 	/*
@@ -52,13 +55,16 @@ public class ContractDao implements ContractDaoInter {
 	public boolean deleteContract(Contract contract) {
 		String sql = "delete from contract where id=?";
 		try {
+		    conn = JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, contract.getId());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			return false;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 
 	/*
@@ -70,6 +76,7 @@ public class ContractDao implements ContractDaoInter {
 		String sql = "update contract set contracttime=?,contractname=?,invoicetitle=?,address=?,contractcontent=?," +
                 "invoicedetail=?,invoicetime=?,invoicenumber=?,invoiceamount=? where id=?";
 		try {
+		    conn = JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, contract.getContracttime());
 			ps.setString(2, contract.getContractname());
@@ -85,7 +92,9 @@ public class ContractDao implements ContractDaoInter {
 			return true;
 		} catch (Exception e) {
 			return false;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 
 	/*
@@ -109,6 +118,7 @@ public class ContractDao implements ContractDaoInter {
 		}
 
 		try {
+		    conn = JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, index);
 			res = ps.executeQuery();
@@ -121,7 +131,9 @@ public class ContractDao implements ContractDaoInter {
 			return tempC;
 		} catch (Exception e) {
 			return null;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 
     /*
@@ -133,6 +145,7 @@ public class ContractDao implements ContractDaoInter {
         int count = 0;
         try {
             String sql1 = "select * from contract where contractname like '%"+index+"%'";
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             List<String> invoices = new ArrayList<String>();
@@ -155,6 +168,8 @@ public class ContractDao implements ContractDaoInter {
         } catch (SQLException e){
             e.printStackTrace();
             return 0;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -167,6 +182,7 @@ public class ContractDao implements ContractDaoInter {
         List<Contract> tempc = new ArrayList<Contract>();
         try {
             String sql1 = "select * from contract where contractname like '%"+index+"%'";
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             List<String> invoices = new ArrayList<String>();
@@ -191,16 +207,22 @@ public class ContractDao implements ContractDaoInter {
                             res.getString(9), res.getString(10)));
                 }
             }
-            List<Contract> ppage= new ArrayList<Contract>();
-            for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
-                if(i < tempc.size()) {
-                    ppage.add(tempc.get(i));
+            if(tempc.size() == 0){
+                return tempc;
+            } else{
+                List<Contract> ppage= new ArrayList<Contract>();
+                for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
+                    if(i < tempc.size()) {
+                        ppage.add(tempc.get(i));
+                    }
                 }
+                return ppage;
             }
-            return ppage;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -214,6 +236,7 @@ public class ContractDao implements ContractDaoInter {
 		List<Contract> tempc = new LinkedList<Contract>();
 		try {
 			String sql = "select * from contract limit ?,?";
+			conn = JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, page);
 			ps.setInt(2, pageSize);
@@ -230,7 +253,9 @@ public class ContractDao implements ContractDaoInter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 
 	/*
@@ -242,6 +267,7 @@ public class ContractDao implements ContractDaoInter {
 		int count = 0;
 		String sql = "select count(*) from contract";
 		try {
+		    conn = JDBC.getConnection();
 			ps = conn.prepareStatement(sql);
 			res = ps.executeQuery();
 			while (res.next()) {
@@ -250,6 +276,8 @@ public class ContractDao implements ContractDaoInter {
 			return count;
 		} catch (Exception e) {
 			return 0;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 }

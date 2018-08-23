@@ -7,11 +7,20 @@
     <driver-class>com.mysql.jdbc.Driver</driver-class>    
     <driver-properties>      
         <property name="user" value="root"/>      
-        <property name="password" value="root"/>    
-    </driver-properties>    
-    <maximum-connection-count>50</maximum-connection-count>
+        <property name="password" value="root"/>
+        <property name="autoReconnect" value="true" />
+    </driver-properties>
+    <prototype-count>5</prototype-count>
+    <maximum-connection-count>150</maximum-connection-count>
     <minimum-connection-count>5</minimum-connection-count>
-    <house-keeping-sleep-time>60000</house-keeping-sleep-time>
+    <maximum-new-connections>10</maximum-new-connections>
+    <simultaneous-build-throttle>20</simultaneous-build-throttle>
+    <test-before-use>true</test-before-use>
+    <test-after-use>true</test-after-use>
+    <maximum-active-time>60000</maximum-active-time>
+    <house-keeping-sleep-time>90000</house-keeping-sleep-time>
     <house-keeping-test-sql>select CURRENT_DATE</house-keeping-test-sql>
+    <trace>true</trace>
+    <verbose>true</verbose>
 </proxool>
 </something-else-entirely>

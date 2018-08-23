@@ -15,7 +15,7 @@ import com.atsjp.webDemo.utils.JDBC;
  * 对于user的增删改操作定义
  */
 public class Userdao implements UserDaoInter {
-	private Connection conn = JDBC.getConnection();
+	private Connection conn = null;
 	private PreparedStatement ps = null;
 	private ResultSet res = null;
 
@@ -23,6 +23,7 @@ public class Userdao implements UserDaoInter {
 	public boolean addUser(User user) {
 		// TODO Auto-generated method stub
 		try {
+		    conn = JDBC.getConnection();
 			String sql = "select * from users where name = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getName());
@@ -43,13 +44,16 @@ public class Userdao implements UserDaoInter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
-		}
-	}
+		} finally {
+		    JDBC.closeAll(conn, ps, res);
+        }
+    }
 
 	@Override
 	public boolean deleteUser(User user) {
 		// TODO Auto-generated method stub
 		try {
+		    conn = JDBC.getConnection();
 			String sql = "delete * from users where id = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getId());
@@ -57,7 +61,9 @@ public class Userdao implements UserDaoInter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 		return true;
 	}
 
@@ -65,6 +71,7 @@ public class Userdao implements UserDaoInter {
 	public boolean modifyUser(User user) {
 		// TODO Auto-generated method stub
 		try {
+		    conn = JDBC.getConnection();
 			String sql = "update users set password =? where username = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getPassword());
@@ -73,7 +80,9 @@ public class Userdao implements UserDaoInter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 		return true;
 	}
 
@@ -82,6 +91,7 @@ public class Userdao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		User tempUser = new User();
 		try {
+		    conn = JDBC.getConnection();
 			String sql = "select * from users where username = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getName());
@@ -101,6 +111,8 @@ public class Userdao implements UserDaoInter {
 		} catch (Exception e1) {
 
 			return null;
-		}
+		} finally {
+            JDBC.closeAll(conn, ps, res);
+        }
 	}
 }

@@ -14,7 +14,7 @@ import com.atsjp.webDemo.entity.Company;
 import com.atsjp.webDemo.utils.JDBC;
 
 public class CompanyDao implements CompanyDaoInter {
-    private Connection conn = JDBC.getConnection();
+    private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet res = null;
 
@@ -25,6 +25,7 @@ public class CompanyDao implements CompanyDaoInter {
     @Override
     public boolean addCompany(Company company) {
         try {
+            conn = JDBC.getConnection();
             String sql = "select * from company where companyname = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, company.getCompanyname());
@@ -52,6 +53,8 @@ public class CompanyDao implements CompanyDaoInter {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -63,6 +66,7 @@ public class CompanyDao implements CompanyDaoInter {
     public boolean deleteCompany(Company company) {
         String sql = "delete from company where companyname=?";
         try {
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, company.getCompanyname());
 //			System.out.println(company.getCname());
@@ -70,6 +74,8 @@ public class CompanyDao implements CompanyDaoInter {
             return true;
         } catch (Exception e) {
             return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -81,6 +87,7 @@ public class CompanyDao implements CompanyDaoInter {
     public boolean modifyCompany(Company company) {
         String sql = "update company set companyname=?, linkman=?, linkphone=?, address=? where id=?";
         try {
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, company.getCompanyname());
             ps.setString(2, company.getLinkman());
@@ -91,6 +98,8 @@ public class CompanyDao implements CompanyDaoInter {
             return true;
         } catch (Exception e) {
             return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -120,6 +129,7 @@ public class CompanyDao implements CompanyDaoInter {
             return null;
         }
         try {
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, index);
             res = ps.executeQuery();
@@ -130,6 +140,8 @@ public class CompanyDao implements CompanyDaoInter {
             return tempC;
         } catch (Exception e) {
             return null;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -142,6 +154,7 @@ public class CompanyDao implements CompanyDaoInter {
         List<Company> tempc = new ArrayList<Company>();
         try {
             String sql1 = "select * from company where companyname like '%"+index+"%'";
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while (res.next()) {
@@ -155,16 +168,23 @@ public class CompanyDao implements CompanyDaoInter {
                 tempc.add(new Company(res.getString(1), res.getString(2), res
                         .getString(3), res.getString(4), res.getString(5)));
             }
-            List<Company> ppage= new ArrayList<Company>();
-            for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
-                if(i < tempc.size()) {
-                    ppage.add(tempc.get(i));
+            if (tempc.size() == 0){
+                return tempc;
+            } else{
+                List<Company> ppage= new ArrayList<Company>();
+                for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
+                    if(i < tempc.size()) {
+                        ppage.add(tempc.get(i));
+                    }
                 }
+                return ppage;
             }
-            return ppage;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -177,6 +197,7 @@ public class CompanyDao implements CompanyDaoInter {
         int count = 0;
         try {
             String sql1 = "select * from company where companyname like '%"+index+"%'";
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while(res.next())
@@ -190,6 +211,8 @@ public class CompanyDao implements CompanyDaoInter {
         } catch (SQLException e){
             e.printStackTrace();
             return 0;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -202,6 +225,7 @@ public class CompanyDao implements CompanyDaoInter {
         List<Company> tempc = new LinkedList<Company>();
         try {
             String sql = "select * from company limit ?,?";
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, page);
             ps.setInt(2, pageSize);
@@ -216,6 +240,8 @@ public class CompanyDao implements CompanyDaoInter {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 
@@ -228,6 +254,7 @@ public class CompanyDao implements CompanyDaoInter {
         int count = 0;
         String sql = "select count(*) from company";
         try {
+            conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             res = ps.executeQuery();
             while (res.next()) {
@@ -236,6 +263,8 @@ public class CompanyDao implements CompanyDaoInter {
             return count;
         } catch (Exception e) {
             return 0;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
         }
     }
 }
