@@ -131,10 +131,12 @@ public class QueryCompanyServlet extends HttpServlet {
         request.setAttribute("endPage", endPage);
 		if (!tempCu.isEmpty()) {
 			request.setAttribute("CompanyList", tempCu);
+			request.setAttribute("result", index);
 			request.getRequestDispatcher("./manager/queryCompany.jsp")
 					.forward(request, response);
 		} else {
 			request.setAttribute("CompanyList", null);
+            request.setAttribute("result", index);
 			request.getRequestDispatcher("./manager/queryCompany.jsp")
 					.forward(request, response);
 		}

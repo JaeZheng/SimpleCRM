@@ -95,6 +95,6 @@
 				href="<%=request.getContextPath()%>/GetPageContractServlet?page=last">末页</a>
 		</div>
 	</c:if>
-	<br><br><br><br><br><br>
+	<br><br>
 </body>
 </html>

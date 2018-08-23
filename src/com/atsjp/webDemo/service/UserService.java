@@ -281,6 +281,7 @@ public class UserService {
 	 */
     public List<Contract> queryContractList(String index, int page, int pageSize){
         List<Contract> queryContractList = contractDao.queryContractList(index, page, pageSize);
+
         return queryContractList;
     }
 

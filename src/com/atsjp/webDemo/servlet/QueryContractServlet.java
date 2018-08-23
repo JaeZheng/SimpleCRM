@@ -131,10 +131,12 @@ public class QueryContractServlet extends HttpServlet {
         request.setAttribute("endPage", endPage);
 		if (!tempCu.isEmpty()) {
 			request.setAttribute("ContractList", tempCu);
+			request.setAttribute("result", index);
 			request.getRequestDispatcher("./manager/queryContract.jsp")
 					.forward(request, response);
 		} else {
 			request.setAttribute("ContractList", null);
+            request.setAttribute("result", index);
 			request.getRequestDispatcher("./manager/queryContract.jsp")
 					.forward(request, response);
 		}
