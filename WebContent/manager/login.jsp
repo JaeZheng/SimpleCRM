@@ -5,14 +5,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宇丰咨询客户信息管理系统</title>
+<%--<title>宇丰咨询客户信息管理系统</title>--%>
+<title>客户信息管理系统</title>
 
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/login.css" />
 <!-- 给页面添加ico -->
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<script type="text/javascript"
+        src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
 <script>
+    $(document).ready(function () {
+        var url = "${pageContext.request.contextPath}/UserServlet";
+        $.post(url,{
+                    method : "init"
+                },
+                function(data) {
+                    document.title = data;
+                });
+    });
+
 	function check() { // 对用户名和密码文本框进行不为空的校验函数
 		with (document.login) { // 为下面语句块中的变量指明所属对象
 			//相当于var user = doucument.loginMain.loginName.value;
@@ -40,9 +53,9 @@
 		<h1>Login</h1>
 		<form action="<%=request.getContextPath()%>/UserServlet?method=login" method="post"
 			name="login">
-			<input type="text" name="username" placeholder="用户名" name="username"></input>
+			<input type="text" name="username" placeholder="用户名" name="username">
 			<input type="password" name="password" placeholder="密码"
-				name="password"></input>
+				name="password">
 			<button class="but" type="button" onclick="check()">登录</button>
 			<!-- <p>忘记密码？>>>&nbsp;&nbsp;&nbsp;&nbsp;新用户注册 >>></p> -->
 			<br> <font color="FF0000">${requestScope.message}</font>

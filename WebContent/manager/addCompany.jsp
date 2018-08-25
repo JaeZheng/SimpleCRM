@@ -50,14 +50,14 @@
 								$.post(url,{
 											method : "checkNameExist",
 											companyName : this.value
-											},
+										},
 										function(data) {
 											if (data == "true") {
 												$("#result").html("&nbsp;<font color='red'>此公司已存在</font>");
 											} else {
 												$("#result").html("&nbsp;<font color='blue'>公司未入数据库,可用</font>");
 											}
-								});
+										});
 							}
 		});
 

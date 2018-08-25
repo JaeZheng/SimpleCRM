@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.atsjp.webDemo.entity.About;
 import sun.rmi.server.Dispatcher;
 
 import com.atsjp.webDemo.entity.User;
@@ -37,6 +38,9 @@ public class UserServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String key = request.getParameter("method");
+        if ("init".equals(key)) {
+            init(request, response);
+        }
 		if ("login".equals(key)) {
 			toCilentUI(request, response);
 		}
@@ -91,4 +95,17 @@ public class UserServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/manager/login.jsp");
 	}
 
+    /*
+     *
+     * 3.初始化
+     */
+    protected void init(HttpServletRequest request,
+                              HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        // 调用service层，检查用户登录信息
+        About about = us.getAbout();
+        System.out.println("软件名字："+about.getSoftware());
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(about.getSoftware());
+    }
 }

@@ -7,10 +7,7 @@ import com.atsjp.webDemo.dao.CompanyDao;
 import com.atsjp.webDemo.dao.ContractDao;
 import com.atsjp.webDemo.dao.CustomerDao;
 import com.atsjp.webDemo.dao.Userdao;
-import com.atsjp.webDemo.entity.Company;
-import com.atsjp.webDemo.entity.Contract;
-import com.atsjp.webDemo.entity.Customer;
-import com.atsjp.webDemo.entity.User;
+import com.atsjp.webDemo.entity.*;
 
 /*
  * 
@@ -297,6 +294,20 @@ public class UserService {
             return true;// 联系电话已存在
         } else {
             return false;// 联系电话不存在
+        }
+    }
+
+    /*
+     *
+     * 查询"关于我们"的信息
+     */
+    public About getAbout(){
+        About about = new About();
+        about = ud.getAbout();
+        if (about != null){
+            return about;
+        } else {
+            return null;
         }
     }
 

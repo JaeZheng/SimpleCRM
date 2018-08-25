@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.atsjp.webDemo.daoInter.UserDaoInter;
+import com.atsjp.webDemo.entity.About;
 import com.atsjp.webDemo.entity.User;
 import com.atsjp.webDemo.utils.JDBC;
 
@@ -93,18 +94,18 @@ public class Userdao implements UserDaoInter {
 		try {
 		    conn = JDBC.getConnection();
 			String sql = "select * from users where username = ?";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, user.getName());
-			res = ps.executeQuery();
-			if (res.next()) {
-				String username = res.getString("username");
-				String password = res.getString("password");
-				tempUser.setName(username);
-				tempUser.setPassword(password);
-				return tempUser;
-			} else {
-				return null;
-			}
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getName());
+            res = ps.executeQuery();
+            if (res.next()) {
+                String username = res.getString("username");
+                String password = res.getString("password");
+                tempUser.setName(username);
+                tempUser.setPassword(password);
+                return tempUser;
+            } else {
+                return null;
+            }
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -115,4 +116,37 @@ public class Userdao implements UserDaoInter {
             JDBC.closeAll(conn, ps, res);
         }
 	}
+
+    public About getAbout(){
+        About about = new About();
+        try {
+            conn = JDBC.getConnection();
+            String sql = "select * from about";
+            ps = conn.prepareStatement(sql);
+            res = ps.executeQuery();
+            if (res.next()) {
+                String software = res.getString("software");
+                String banquan = res.getString("banquan");
+                String address = res.getString("address");
+                String linkman = res.getString("linkman");
+                String linkphone = res.getString("linkphone");
+                about.setSoftware(software);
+                about.setBanquan(banquan);
+                about.setAddress(address);
+                about.setLinkman(linkman);
+                about.setLinkphone(linkphone);
+                return about;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (Exception e1) {
+
+            return null;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
 }

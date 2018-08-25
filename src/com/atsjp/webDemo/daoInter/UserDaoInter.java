@@ -1,5 +1,6 @@
 package com.atsjp.webDemo.daoInter;
 
+import com.atsjp.webDemo.entity.About;
 import com.atsjp.webDemo.entity.User;
 
 public interface UserDaoInter {
@@ -14,5 +15,7 @@ public interface UserDaoInter {
 	
 	//查找管理员
 	public User getUser(User user);
-	
+
+    //查询"关于我们"的信息
+    public About getAbout();
 }
