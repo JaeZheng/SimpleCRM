@@ -139,6 +139,7 @@
                 </div>
 			</c:when>
 		</c:choose>
+		</fieldset>
 		<br><br>
 </body>
 </html>

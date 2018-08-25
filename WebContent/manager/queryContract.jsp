@@ -80,7 +80,7 @@
 		</legend>
 		<c:choose>
 			<c:when test="${empty ContractList}">
-				<font color="#FFFFFF">您输入的是:${requestScope.result}<br> <br>无相关合同信息，请您检查公司名称或联系人填写是否正确。
+				<font color="#FFFFFF">您输入的是:${requestScope.result}<br> <br>无相关合同信息，请您检查合同名称或对应发票抬头填写是否正确。
 				</font>
 			</c:when>
 			<c:when test="${!empty ContractList}">
@@ -149,6 +149,7 @@
                 </div>
 			</c:when>
 		</c:choose>
+		</fieldset>
 		<br><br>
 </body>
 </html>

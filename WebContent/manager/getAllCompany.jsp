@@ -12,8 +12,13 @@
 	href="<%=request.getContextPath()%>/css/getAllC.css" />
 </head>
 <body>
-	<font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
-	<font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
+    <a href="<%=request.getContextPath()%>/manager/queryCompany.jsp"
+       target="mainFrame"><button class="but">查询客户</button></a>&nbsp;&nbsp;
+    <a href="<%=request.getContextPath()%>/manager/addCompany.jsp"
+       target="mainFrame"><button class="but">增加客户</button></a><br><br><br>
+	<fieldset>
+        <font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
+        <font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
 	<c:if test="${empty CompanyList}">
 		<c:if test="${!empty deleteResult}">
 			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br>
@@ -86,5 +91,6 @@
 		</div>
 	</c:if>
 	<br><br>
+    </fieldset>
 </body>
 </html>

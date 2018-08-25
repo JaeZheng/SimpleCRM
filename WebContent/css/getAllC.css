@@ -148,3 +148,17 @@ a.mo:active {
 	color: #FFCC00;
 	text-decoration: none
 }
+
+.but {
+	width: 100px;
+	min-height: 38px;
+	display: inline;
+	background-color: #4a77d4;
+	border: 1px solid #3762bc;
+	color: #fff;
+	padding: 2px 2px;
+	font-size: 15px;
+	line-height: normal;
+	border-radius: 5px;
+	margin: 0;
+}

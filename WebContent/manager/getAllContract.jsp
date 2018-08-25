@@ -12,6 +12,11 @@
 	href="<%=request.getContextPath()%>/css/getAllC.css" />
 </head>
 <body>
+<a href="<%=request.getContextPath()%>/manager/queryContract.jsp"
+   target="mainFrame"><button class="but">查询合同</button></a>&nbsp;&nbsp;
+<a href="<%=request.getContextPath()%>/manager/addContract.jsp"
+   target="mainFrame"><button class="but">增加合同</button></a><br><br><br>
+	<fieldset>
 	<font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
 	<font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
 	<c:if test="${empty ContractList}">
@@ -96,5 +101,6 @@
 		</div>
 	</c:if>
 	<br><br>
+	</fieldset>
 </body>
 </html>

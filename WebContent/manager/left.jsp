@@ -16,31 +16,31 @@
 				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=0"
 				target="mainFrame" class="xyz">全部客户信息</a></td>
 		</tr>
-		<tr>
-			<td><a
-				href="<%=request.getContextPath()%>/manager/addCompany.jsp"
-				target="mainFrame">增加客户</a></td>
-		</tr>
-		<tr>
-			<td><a
-				href="<%=request.getContextPath()%>/manager/queryCompany.jsp"
-				target="mainFrame">查询客户</a></td>
-		</tr>
+		<%--<tr>--%>
+			<%--<td><a--%>
+				<%--href="<%=request.getContextPath()%>/manager/addCompany.jsp"--%>
+				<%--target="mainFrame">增加客户</a></td>--%>
+		<%--</tr>--%>
+		<%--<tr>--%>
+			<%--<td><a--%>
+				<%--href="<%=request.getContextPath()%>/manager/queryCompany.jsp"--%>
+				<%--target="mainFrame">查询客户</a></td>--%>
+		<%--</tr>--%>
 		<tr>
 			<td><a
 					href="<%=request.getContextPath()%>/GetPageContractServlet?page=0"
 					target="mainFrame" class="xyz">全部合同信息</a></td>
 		</tr>
-		<tr>
-			<td><a
-					href="<%=request.getContextPath()%>/manager/addContract.jsp"
-					target="mainFrame">增加合同</a></td>
-		</tr>
-		<tr>
-			<td><a
-					href="<%=request.getContextPath()%>/manager/queryContract.jsp"
-					target="mainFrame">查询合同</a></td>
-		</tr>
+		<%--<tr>--%>
+			<%--<td><a--%>
+					<%--href="<%=request.getContextPath()%>/manager/addContract.jsp"--%>
+					<%--target="mainFrame">增加合同</a></td>--%>
+		<%--</tr>--%>
+		<%--<tr>--%>
+			<%--<td><a--%>
+					<%--href="<%=request.getContextPath()%>/manager/queryContract.jsp"--%>
+					<%--target="mainFrame">查询合同</a></td>--%>
+		<%--</tr>--%>
 		<tr>
 			<td><a
 					href="<%=request.getContextPath()%>/manager/aboutUs.jsp"
