@@ -14,23 +14,23 @@
 <table class="bordered" bgcolor="#FFFFFF">
     <tr>
         <td>软件名称</td>
-        <td>宇丰咨询客户信息管理系统</td>
+        <td>${requestScope.software}</td>
     </tr>
     <tr>
         <td>版权所属</td>
-        <td>广州宇丰工程咨询有限公司</td>
+        <td>${requestScope.banquan}</td>
     </tr>
     <tr>
         <td>办公地址</td>
-        <td>广州市天河区粤垦路4、8号二楼东面2D号</td>
+        <td>${requestScope.address}</td>
     </tr>
     <tr>
         <td>联系人</td>
-        <td>周修丰</td>
+        <td>${requestScope.linkman}</td>
     </tr>
     <tr>
         <td>联系方式</td>
-        <td>020—36659000</td>
+        <td>${requestScope.linkphone}</td>
     </tr>
 </table>
 </body>

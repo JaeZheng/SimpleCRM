@@ -94,6 +94,19 @@ CREATE TABLE `users` (
 
 insert  into `users`(`id`,`username`,`password`,`email`) values ('34f39b5a-eb8e-43ee-a486-0f82b5fa1732','sjppop','124','455@163.com'),('933098ad-3737-423d-9cd7-733cfc6668e8','xfzhang','123456',''),('d8f71490-7029-46a8-9da8-9a937010585e','admin','123456',NULL),('d8f71490-7029-46a8-9da8-9a937060585e','Jack','123456','');
 
+
+DROP TABLE IF EXISTS `about`;
+CREATE TABLE `about` (
+  `software` varchar(100) NOT NULL,
+  `banquan` varchar(100) NOT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `linkman` varchar(40) NOT NULL,
+  `linkphone` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into about value("宇丰咨询客户信息管理系统","广州宇丰工程咨询有限公司","广州市天河区粤垦路4、8号二楼东面2D号",
+"周修丰","020—36659000");
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%--<title>宇丰咨询客户信息管理系统</title>--%>
-<title>客户信息管理系统</title>
+
 
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
@@ -46,6 +46,7 @@
 	alert("click login2222!");
 	}; 
 -->
+    <title>客户信息管理系统</title>
 </head>
 
 <body>

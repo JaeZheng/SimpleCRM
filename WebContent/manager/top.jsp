@@ -8,10 +8,23 @@
 <!-- 导入css样式的时候引入绝对路径 -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/main.css" />
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            var url = "${pageContext.request.contextPath}/UserServlet";
+            $.post(url,{
+                        method : "init"
+                    },
+                    function(data) {
+                        document.getElementById("name").innerHTML=data;
+                    });
+        });
+    </script>
 </head>
 <body>
 	<center>
-		<br> <br> <font color="#FFFFFF" size=20> 宇丰咨询客户信息管理系统 </font>
+		<br> <br> <font color="#FFFFFF" size=20 id="name">客户信息管理系统</font>
 	</center>
 </body>
 </html>

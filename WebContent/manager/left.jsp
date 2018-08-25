@@ -43,7 +43,7 @@
 		<%--</tr>--%>
 		<tr>
 			<td><a
-					href="<%=request.getContextPath()%>/manager/aboutUs.jsp"
+					href="<%=request.getContextPath()%>/UserServlet?method=aboutUs"
 					target="mainFrame">关于我们</a></td>
 		</tr>
 		<tr>
