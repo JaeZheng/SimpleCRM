@@ -12,68 +12,61 @@
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $("#buttonbin").click(function() {
-                //检查输入信息是否不为空钩
-                //alet("--");
-                var $cindexEle = $("#index");
-                var reg = /\s/;
-                if (!reg.test($cindexEle)) {
-                    alert("输入信息为空，请重新输入");
-                    //$cindexEle[0].focus();
-                    return false;
-                }
+
+        function isnull(val) {
+            var str = val.replace(/(^\s*)|(\s*$)/g, '');//把val首尾的空格去掉。
+
+            if (str == '' || str == undefined || str == null) {//输入框中输入空格也为空
                 return true;
-            });
+            } else {
+                return false;
+            }
+        }
 
-            $("#buttonbin1")
-                .click(
-                    function() {
-                        //检查用户输入修改信息格式是否正确
-                        //检查姓名: 姓名只能输入中文且不能为空
-                        //alert("--");
-                        /*
-                        var $nameEle = $("#linkman");
-                        var reg = /^[\u4e00-\u9fa5]{1,5}$/;
-                        if (!reg.test($nameEle.val())) {
-                            alert("姓名只能输入中文且不能为空,最少1个汉字最多5个汉字");
-                            $nameEle[0].focus();
-                            return false;
-                        }
+        function check(){
+            //检查用户输入修改信息格式是否正确
+            var contracttime = document.getElementById('contracttime');
+            var invoicedetail = document.getElementById('invoicedetail');
+            var contractname = document.getElementById('contractname');
+            var invoicetime = document.getElementById('invoicetime');
+            var invoicetitle = document.getElementById('invoicetitle');
+            var invoicenumber = document.getElementById('invoicenumber');
+            var address = document.getElementById('address');
+            var invoiceamount = document.getElementById('invoiceamount');
+            var contractcontent = document.getElementById('contractcontent');
 
-                        //手机号码必须为11位
-                        var $phoneEle = $("#linkphone");
-                        reg = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
-                        if (!reg.test($phoneEle.val())) {
-                            $phoneEle[0].focus();
-                            alert("手机格式不正确!");
-                            return false;
-                        }
-                        */
-                        return true;
-                    });
-
-        });
+            if (isnull(contracttime.value)) {
+                alert("合同时间不能为空!");
+                return false;
+            } else if (isnull(invoicedetail.value)) {
+                alert("发票明细不能为空!");
+                return false;
+            } else if (isnull(contractname.value)) {
+                alert("合同名称不能为空!");
+                return false;
+            } else if (isnull(invoicetime.value)) {
+                alert("开票日期不能为空!");
+                return false;
+            } else if (isnull(invoicetitle.value)) {
+                alert("发票抬头不能为空!");
+                return false;
+            } else if (isnull(invoicenumber.value)) {
+                alert("发票编号不能为空!");
+                return false;
+            } else if (isnull(address.value)) {
+                alert("办公地址不能为空!");
+                return false;
+            } else if (isnull(invoiceamount.value)) {
+                alert("发票金额不能为空!");
+                return false;
+            } else if (isnull(contractcontent.value)) {
+                alert("发票内容不能为空!");
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/GetContractServlet"
-      method="post">
-    <fieldset>
-        <legend>
-            <font color="#FFFFFF">合同信息查找栏</font>
-        </legend>
-        <table>
-            <tr>
-                <td><input type="text" class="input"
-                           placeholder="请输入你要修改的合同发票编号" id="index" name="cindex">
-                    <input type="submit" class="but" id="buttonbin" value="搜索"></td>
-            </tr>
-        </table>
-    </fieldset>
-</form>
-<br>
-<br>
 <fieldset>
     <legend>
         <font color="#FFFFFF">合同信息显示栏</font>
@@ -163,7 +156,7 @@
                 <table>
                     <tr>
                         <td><input type="hidden" id="id" name="id"
-                                   value="${Contract.id}"> <input type="submit"
+                                   value="${Contract.id}"> <input type="submit" onclick="return check()"
                                                                   id="buttonbin1" class="but1" value="提交"></td>
                     </tr>
                 </table>

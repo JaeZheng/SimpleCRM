@@ -118,35 +118,59 @@ public class Userdao implements UserDaoInter {
 	}
 
     public About getAbout(){
-        About about = new About();
-        try {
-            conn = JDBC.getConnection();
-            String sql = "select * from about";
-            ps = conn.prepareStatement(sql);
-            res = ps.executeQuery();
-            if (res.next()) {
-                String software = res.getString("software");
-                String banquan = res.getString("banquan");
-                String address = res.getString("address");
-                String linkman = res.getString("linkman");
-                String linkphone = res.getString("linkphone");
-                about.setSoftware(software);
-                about.setBanquan(banquan);
-                about.setAddress(address);
-                about.setLinkman(linkman);
-                about.setLinkphone(linkphone);
-                return about;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } catch (Exception e1) {
+		About about = new About();
+		try {
+			conn = JDBC.getConnection();
+			String sql = "select * from about";
+			ps = conn.prepareStatement(sql);
+			res = ps.executeQuery();
+			if (res.next()) {
+				String software = res.getString("software");
+				String banquan = res.getString("banquan");
+				String address = res.getString("address");
+				String linkman = res.getString("linkman");
+				String linkphone = res.getString("linkphone");
+				about.setSoftware(software);
+				about.setBanquan(banquan);
+				about.setAddress(address);
+				about.setLinkman(linkman);
+				about.setLinkphone(linkphone);
+				return about;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (Exception e1) {
 
-            return null;
-        } finally {
-            JDBC.closeAll(conn, ps, res);
-        }
-    }
+			return null;
+		} finally {
+			JDBC.closeAll(conn, ps, res);
+		}
+	}
+
+	public boolean modifyAboutUs(About about, String oldSoftware){
+		try {
+			conn = JDBC.getConnection();
+			String sql = "update about set software=?,banquan=?,address=?,linkman=?,linkphone=? where software=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, about.getSoftware());
+            ps.setString(2, about.getBanquan());
+            ps.setString(3, about.getAddress());
+            ps.setString(4, about.getLinkman());
+            ps.setString(5, about.getLinkphone());
+            ps.setString(6, oldSoftware);
+            ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (Exception e1) {
+            e1.printStackTrace();
+			return false;
+		} finally {
+			JDBC.closeAll(conn, ps, res);
+		}
+		return true;
+	}
 }

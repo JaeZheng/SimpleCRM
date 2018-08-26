@@ -23,75 +23,71 @@
         }
     }
 
-	$(function() {
-		$("#buttonbin1")
-				.click(
-						function() {
-							//检查用户输入修改信息格式是否正确
-                            var companyname = document.getElementById('companyname');
-                            var linkman = document.getElementById('linkman');
-                            var linkphone = document.getElementById('linkphone');
-                            var address = document.getElementById('address');
-                            if (isnull(companyname.value)){
-                                alert("公司名称不能为空!");
-                                return false;
-                            }else if (isnull(linkman.val)){
-                                alert("联系人不能为空!");
-                                return false;
-                            }else if (isnull(linkphone.val)){
-                                alert("联系电话不能为空!");
-                                return false;
-                            }else if (isnull(address)){
-                                alert("办公地址不能为空!");
-                                return false;
-                            }
-                            var regphone = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
-                            if (!regphone.test(linkphone.value)) {
-                                alert("联系电话格式有误!");
-                                return false;
-                            }
-                            <%--var url = "${pageContext.request.contextPath}/AddCompanyServlet";--%>
-                            /*
-                            //检查重复公司名称
-                            var regname = /^[\u4e00-\u9fa5]{1,100}$/;
-                            if (!regname.test(companyname.value)) {
-                                alert("公司名称格式有误!");
-                                return false;
-                            }else {
-                                //url add here
-                                $.post(url,{
-                                        method : "checkNameExist",
-                                        companyName : companyname.value
-                                    },
-                                    function(data) {
-                                        if (data == "true") {
-                                            alert("此公司已存在!");
-                                            return false;
-                                        }
-                                    });
-                            }
-                            //检查重复联系电话
-                            var regphone = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
-                            if (!regname.test(linkphone.value)) {
-                                alert("联系电话格式有误!");
-                                return false;
-                            }else {
-                                //url add here
-                                $.post(url,{
-                                        method : "checkPhoneExist",
-                                        linkPhone : linkphone.value
-                                    },
-                                    function(data) {
-                                        if (data == "true") {
-                                            alert("此联系电话已存在!");
-                                            return false;
-                                        }
-                                    });
-                            }
-                            */
-							return true;
-						});
-	});
+	function check() {
+		//检查用户输入修改信息格式是否正确
+		var companyname = document.getElementById('companyname');
+		var linkman = document.getElementById('linkman');
+		var linkphone = document.getElementById('linkphone');
+		var address = document.getElementById('address');
+		if (isnull(companyname.value)) {
+			alert("公司名称不能为空!");
+			return false;
+		} else if (isnull(linkman.value)) {
+			alert("联系人不能为空!");
+			return false;
+		} else if (isnull(linkphone.value)) {
+			alert("联系电话不能为空!");
+			return false;
+		} else if (isnull(address.value)) {
+			alert("办公地址不能为空!");
+			return false;
+		}
+		var regphone = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
+		if (!regphone.test(linkphone.value)) {
+			alert("联系电话格式有误!");
+			return false;
+		}
+		<%--var url = "${pageContext.request.contextPath}/AddCompanyServlet";--%>
+		/*
+                           //检查重复公司名称
+                           var regname = /^[\u4e00-\u9fa5]{1,100}$/;
+                           if (!regname.test(companyname.value)) {
+                               alert("公司名称格式有误!");
+                               return false;
+                           }else {
+                               //url add here
+                               $.post(url,{
+                                       method : "checkNameExist",
+                                       companyName : companyname.value
+                                   },
+                                   function(data) {
+                                       if (data == "true") {
+                                           alert("此公司已存在!");
+                                           return false;
+                                       }
+                                   });
+                           }
+                           //检查重复联系电话
+                           var regphone = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
+                           if (!regname.test(linkphone.value)) {
+                               alert("联系电话格式有误!");
+                               return false;
+                           }else {
+                               //url add here
+                               $.post(url,{
+                                       method : "checkPhoneExist",
+                                       linkPhone : linkphone.value
+                                   },
+                                   function(data) {
+                                       if (data == "true") {
+                                           alert("此联系电话已存在!");
+                                           return false;
+                                       }
+                                   });
+                           }
+                           */
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -159,7 +155,7 @@
 					<table>
 						<tr>
 							<td><input type="hidden" id="id" name="id"
-								value="${Company.id}"> <input type="submit"
+								value="${Company.id}"> <input type="submit" onclick="return check()"
 								id="buttonbin1" class="but1" value="提交"></td>
 						</tr>
 					</table>

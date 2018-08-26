@@ -311,4 +311,15 @@ public class UserService {
         }
     }
 
+	/*
+     *
+     * 修改"关于我们"的信息
+     */
+	public boolean modifyAboutUs(About about, String oldSoftware){
+		if (ud.modifyAboutUs(about, oldSoftware)){
+            return true;
+        } else{
+            return false;
+        }
+	}
 }

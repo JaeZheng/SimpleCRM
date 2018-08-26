@@ -11,26 +11,68 @@
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $("#bubmitBtn")
-                .click(
-                    function() {
-                        return true;
-                    });
-            //检查重复发票编号
-            $("#invoicenumber").blur( function() {
-                var url = "${pageContext.request.contextPath}/AddCompanyServlet";
-                $.post(url,{
-                        method : "checkInvoiceExist",
-                        invoiceNumber : this.value
-                    },
-                    function(data) {
-                        if (data == "true") {
-                            $("#result1").html("&nbsp;<font color='red'>此发票编号已存在</font>");
-                        } else {
-                            $("#result1").html("&nbsp;<font color='blue'>此发票编号可用</font>");
-                        }
-                    });
+
+        function isnull(val) {
+            var str = val.replace(/(^\s*)|(\s*$)/g, '');//把val首尾的空格去掉。
+
+            if (str == '' || str == undefined || str == null) {//输入框中输入空格也为空
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function check(){
+            //检查用户输入修改信息格式是否正确
+            var contracttime = document.getElementById('contracttime');
+            var invoicedetail = document.getElementById('invoicedetail');
+            var contractname = document.getElementById('contractname');
+            var invoicetime = document.getElementById('invoicetime');
+            var invoicetitle = document.getElementById('invoicetitle');
+            var invoicenumber = document.getElementById('invoicenumber');
+            var address = document.getElementById('address');
+            var invoiceamount = document.getElementById('invoiceamount');
+            var contractcontent = document.getElementById('contractcontent');
+
+            if (isnull(contracttime.value)) {
+                alert("合同时间不能为空!");
+                return false;
+            } else if (isnull(invoicedetail.value)) {
+                alert("发票明细不能为空!");
+                return false;
+            } else if (isnull(contractname.value)) {
+                alert("合同名称不能为空!");
+                return false;
+            } else if (isnull(invoicetime.value)) {
+                alert("开票日期不能为空!");
+                return false;
+            } else if (isnull(invoicetitle.value)) {
+                alert("发票抬头不能为空!");
+                return false;
+            } else if (isnull(invoicenumber.value)) {
+                alert("发票编号不能为空!");
+                return false;
+            } else if (isnull(address.value)) {
+                alert("办公地址不能为空!");
+                return false;
+            } else if (isnull(invoiceamount.value)) {
+                alert("发票金额不能为空!");
+                return false;
+            } else if (isnull(contractcontent.value)) {
+                alert("发票内容不能为空!");
+                return false;
+            }
+        }
+
+        //检查重复发票编号
+        $("#invoicenumber").blur( function() {
+            var url = "${pageContext.request.contextPath}/AddCompanyServlet";
+            $.post(url,{method : "checkInvoiceExist", invoiceNumber : this.value}, function(data) {
+                if (data == "true") {
+                    $("#result1").html("&nbsp;<font color='red'>此发票编号已存在</font>");
+                } else {
+                    $("#result1").html("&nbsp;<font color='blue'>此发票编号可用</font>");
+                }
             });
         });
     </script>
@@ -91,7 +133,7 @@
             </tr> -->
         </table>
         <br>
-        <input align="center" type="submit" name="button"
+        <input align="center" type="submit" name="button" onclick="return check()"
                id="bubmitBtn" class="but" value="提交">
     </fieldset>
 </form>

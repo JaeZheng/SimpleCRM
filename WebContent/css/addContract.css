@@ -15,6 +15,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: #FFFFFF;
     margin: 0;
+    overflow: auto;
     background-image: url('../image/bg.jpg');
     background-repeat: repeat;
     background-origin: border-box;
@@ -34,12 +35,12 @@ th {
 
 input[type="text"] {
     font-size:20px;
-    width: 400px;
+    width: 300px;
 }
 
 input[name="contractcontent"]{
     font-size:20px;
-    width: 1000px;
+    width: 800px;
     height: 80px;
 }
 

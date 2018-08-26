@@ -50,6 +50,9 @@ public class UserServlet extends HttpServlet {
 		if ("aboutUs".equals(key)) {
             aboutUs(request, response);
         }
+        if ("modify".equals(key)) {
+            modifyAboutUs(request, response);
+        }
 	}
 
 	/**
@@ -71,7 +74,7 @@ public class UserServlet extends HttpServlet {
             About about = us.getAbout();
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user); // 保存用户信息到session中
-            request.setAttribute("software", about.getSoftware());
+            session.setAttribute("software", about.getSoftware());
 			request.setAttribute("message", "登录成功,正在自动跳转...");
 			// response.sendRedirect("./manager/main.jsp"); // 重定向
 			request.getRequestDispatcher("./manager/main.jsp").forward(request,
@@ -137,6 +140,44 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("linkman", "");
             request.setAttribute("linkphone", "");
             request.getRequestDispatcher("./manager/aboutUs.jsp").forward(
+                    request, response);
+        }
+    }
+
+    /*
+     *
+     * 5.修改"关于我们"的信息
+     */
+    protected void modifyAboutUs(HttpServletRequest request,
+                           HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        String oldSoftware = (String)session.getAttribute("software");
+        // 获得请求中的值
+        String software = request.getParameter("software");
+        String banquan = request.getParameter("banquan");
+        String address = request.getParameter("address");
+        String linkman = request.getParameter("linkman");
+        String linkphone = request.getParameter("linkphone");
+        // 将对应值封装到About对象中
+        About about = new About();
+        about.setSoftware(software);
+        about.setBanquan(banquan);
+        about.setAddress(address);
+        about.setLinkman(linkman);
+        about.setLinkphone(linkphone);
+        // 调用service层，修改"关于我们"信息
+        if (us.modifyAboutUs(about, oldSoftware)) {
+            session.setAttribute("software", about.getSoftware());
+            request.setAttribute("modifyMessage", "修改成功，请刷新网页。");
+            // response.sendRedirect("./manager/main.jsp"); // 重定向
+            request.getRequestDispatcher("./manager/modifyAboutUs.jsp").forward(request,
+                    response);
+        } else {
+            // HttpSession session = request.getSession();
+            request.setAttribute("modifyMessage", "修改失败，请重新输入。");
+            // response.sendRedirect("./manager/login.jsp"); // 重定向
+            request.getRequestDispatcher("./manager/modifyAboutUs.jsp").forward(
                     request, response);
         }
     }

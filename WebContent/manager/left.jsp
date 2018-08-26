@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,6 +47,13 @@
 					href="<%=request.getContextPath()%>/UserServlet?method=aboutUs"
 					target="mainFrame">关于我们</a></td>
 		</tr>
+        <c:if test="${sessionScope.user.name=='admin'}" >
+            <tr>
+                <td><a
+                        href="<%=request.getContextPath()%>/manager/modifyAboutUs.jsp"
+                        target="mainFrame">系统设置</a></td>
+            </tr>
+        </c:if>
 		<tr>
 			<td><a
 				href="<%=request.getContextPath()%>/UserServlet?method=logout"

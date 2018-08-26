@@ -12,48 +12,29 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#buttonbin").click(function() {
-			//检查输入信息是否不为空钩
-			//alet("--");
-			var $cindexEle = $("#index");
-			var reg = /\s/;
-			if (!reg.test($cindexEle)) {
-				alert("输入信息为空，请重新输入");
-				//$cindexEle[0].focus();
-				return false;
-			}
-			return true;
-		});
 
-		$("#buttonbin1")
-				.click(
-						function() {
-							//检查用户输入修改信息格式是否正确
-                            //检查姓名: 姓名只能输入中文且不能为空
-							//alert("--");
-							/*
-							var $nameEle = $("#linkman");
-							var reg = /^[\u4e00-\u9fa5]{1,5}$/;
-							if (!reg.test($nameEle.val())) {
-								alert("姓名只能输入中文且不能为空,最少1个汉字最多5个汉字");
-								$nameEle[0].focus();
-								return false;
-							}
+    function isnull(val) {
+        var str = val.replace(/(^\s*)|(\s*$)/g, '');//把val首尾的空格去掉。
 
-							//手机号码必须为11位
-							var $phoneEle = $("#linkphone");
-							reg = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
-							if (!reg.test($phoneEle.val())) {
-								$phoneEle[0].focus();
-								alert("手机格式不正确!");
-								return false;
-							}
-                            */
-							return true;
-						});
+        if (str == '' || str == undefined || str == null) {//输入框中输入空格也为空
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	});
+    function check(){
+        //检查用户输入修改信息格式是否正确
+        var index = document.getElementById('index');
+
+        if (isnull(index.value)) {
+            alert("搜索信息不能为空!");
+            return false;
+        } else{
+            return true;
+        }
+    }
+
 </script>
 </head>
 <body>
@@ -67,7 +48,7 @@
 				<tr>
 					<td><input type="text" class="input"
 						placeholder="请输入你要查询的公司名称或者联系人" id="index" name="cindex">
-						<input type="submit" class="but" id="buttonbin" value="搜索"></td>
+						<input type="submit" class="but" id="buttonbin" onclick="return check()" value="搜索"></td>
 				</tr>
 			</table>
 		</fieldset>
