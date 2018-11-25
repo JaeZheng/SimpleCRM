@@ -3,10 +3,7 @@ package com.atsjp.webDemo.service;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.atsjp.webDemo.dao.CompanyDao;
-import com.atsjp.webDemo.dao.ContractDao;
-import com.atsjp.webDemo.dao.CustomerDao;
-import com.atsjp.webDemo.dao.Userdao;
+import com.atsjp.webDemo.dao.*;
 import com.atsjp.webDemo.entity.*;
 
 /*
@@ -18,9 +15,11 @@ public class UserService {
 	CustomerDao cu = new CustomerDao();
 	CompanyDao companyDao = new CompanyDao();
 	ContractDao contractDao = new ContractDao();
+	CustServiceDao custServiceDao = new CustServiceDao();
 	List<Customer> userlist = new LinkedList<Customer>();
 	List<Company> companyList = new LinkedList<Company>();
 	List<Contract> contractList = new LinkedList<Contract>();
+	List<CustService> custServiceList = new LinkedList<CustService>();
 
 	/*
 	 * 
@@ -321,5 +320,48 @@ public class UserService {
         } else{
             return false;
         }
+	}
+
+	/*
+	 *
+	 * 根据servlet返回的CustService对象，添加Company的对象到数据库中
+	 */
+	public boolean addCustService(CustService custService) {
+		if (custServiceDao.addCustService(custService)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public List<CustService> getAllCustService(int page, int pageSize) {
+		custServiceList = custServiceDao.page(page, pageSize);
+		return custServiceList;
+	}
+
+	public boolean deleteCustService(CustService custService) {
+		if (custServiceDao.deleteCustService(custService)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public CustService getCustService(CustService custService) {
+		custService = custServiceDao.getCustService(custService);
+		return custService;
+	}
+
+	public boolean modifyCustService(CustService custService) {
+		if (custServiceDao.modifyCustService(custService)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public List<CustService> queryCustServiceList(String index, int page, int pageSize){
+		List<CustService> queryCustServiceList = custServiceDao.queryCustServiceList(index, page, pageSize);
+		return queryCustServiceList;
 	}
 }

@@ -1,8 +1,6 @@
 package com.atsjp.webDemo.entity;
 
-import com.atsjp.webDemo.dao.ContractDao;
-import com.atsjp.webDemo.dao.CustomerDao;
-import com.atsjp.webDemo.dao.CompanyDao;
+import com.atsjp.webDemo.dao.*;
 
 public class Page {
 	private int Page = 0;// 总页数
@@ -11,6 +9,7 @@ public class Page {
 	private int PageSize = 7; // 每页显示数据默认7
 	CompanyDao companyDao = new CompanyDao();
 	ContractDao contractDao = new ContractDao();
+	CustServiceDao custServiceDao = new CustServiceDao();
 
 	public Page() {// 创建的时候，初始化Page，TotalCount
 		super();
@@ -63,6 +62,19 @@ public class Page {
         }
     }
 
+	// 查询满足条件的custService个数
+	public boolean queryCustServiceCount(String index){
+		try {
+			this.TotalCount = custServiceDao.queryCustServiceCount(index);
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e){
+			return false;
+		}
+	}
+
 	// 获取company最新的数据库信息
 	public boolean getCompanyNew() {
 		try {
@@ -88,6 +100,19 @@ public class Page {
             return false;
         }
     }
+
+	// 获取custService最新的数据库信息
+	public boolean getCustServiceNew() {
+		try {
+			this.TotalCount = custServiceDao.getCount();
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	public int getPage() {
 		return Page;

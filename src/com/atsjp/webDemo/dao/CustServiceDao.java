@@ -84,7 +84,7 @@ public class CustServiceDao implements CustServiceDaoInter {
             ps.setString(6, custService.getEstimatedcost());
             ps.setString(7, custService.getActualcost());
             ps.setString(8, custService.getSatisfaction());
-            ps.setString(9, custService.getId());
+            ps.setInt(9, Integer.parseInt(custService.getId()));
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -126,7 +126,9 @@ public class CustServiceDao implements CustServiceDaoInter {
             res = ps.executeQuery();
             while (res.next()) {
                 tempC = new CustService(res.getString(1), res.getString(2),
-                        res.getString(3), res.getString(4), res.getString(5));
+                        res.getString(3), res.getString(4), res.getString(5),
+                        res.getString(6), res.getString(7), res.getString(8),
+                        res.getString(9));
             }
             return tempC;
         } catch (Exception e) {
@@ -149,15 +151,17 @@ public class CustServiceDao implements CustServiceDaoInter {
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res
-                        .getString(3), res.getString(4), res.getString(5)));
+                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
+                        res.getString(8), res.getString(9)));
             }
             String sql2 = "select * from custService where linkman like '%"+index+"%'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res
-                        .getString(3), res.getString(4), res.getString(5)));
+                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
+                        res.getString(8), res.getString(9)));
             }
             if (tempc.size() == 0){
                 return tempc;
@@ -224,8 +228,9 @@ public class CustServiceDao implements CustServiceDaoInter {
             res = ps.executeQuery();
             // 4.访问结果集
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res
-                        .getString(3), res.getString(4), res.getString(5)));
+                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
+                        res.getString(8), res.getString(9)));
             }
             return tempc;
         } catch (SQLException e) {

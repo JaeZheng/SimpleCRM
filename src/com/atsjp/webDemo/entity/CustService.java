@@ -16,13 +16,18 @@ public class CustService {
         // TODO Auto-generated constructor stub
     }
 
-    public CustService(String id, String customername, String linkman, String linkphone, String servicetype) {
+    public CustService(String id, String customername, String linkman, String linkphone, String servicetype,
+                       String servicedate, String estimatedcost, String actualcost, String satisfaction) {
         super();
         this.id = id;
         this.customername = customername;
         this.linkman = linkman;
         this.linkphone = linkphone;
         this.servicetype = servicetype;
+        this.servicedate = servicedate;
+        this.estimatedcost = estimatedcost;
+        this.actualcost = actualcost;
+        this.satisfaction = satisfaction;
     }
 
     public String getId() {
