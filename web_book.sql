@@ -93,6 +93,27 @@ CREATE TABLE `customers` (
 
 insert  into `customers`(`id`,`cname`,`cpassword`,`cgender`,`cbirth`,`cmajority`,`cinterest`,`cemail`,`cphone`) values ('dbed40b8-1394-46e4-9785-bb39a779e7d1','丽萨','123456','女','1992-01-02','软件工程','足球;台球;其他;','laoliweibo@sina.com','17405570239'),('e0335332-9191-410a-b200-f66f1b90ca6b','光头强','asdfcv','男','1050-09-25','建筑学','羽毛球;篮球;','guantouqiang@flash.com','17568945541'),('a3645348-4627-461b-85ac-a667ec1d4a7b','周杰伦','111111','男','1996-08-01','其他','篮球;足球;拳击;其他;','123456@qq.com','18872626574'),('3c6617bb-b7d7-4749-b3fd-a06bf43d4978','思科','ghj123','女','2001-10-01','建筑学','篮球;足球;游泳;羽毛球;排球;台球;拳击;其他;','9654781235@outlook.con','15250216456'),('8ede264b-562c-4f04-bbe8-5bf2a5308131','李大大','gtygty56','女','1997-12-02','小学教育','足球;台球;其他;','lidadasina@sina.com','13406570209'),('cb8495ee-f797-4d18-8596-0fb766603e07','李忠','123456','女','1965-05-01','文学院','羽毛球;足球;','480725864@qq.com','13406689975'),('8f2e09ef-07d1-40cb-9052-ebffd8ad0ec3','测试','123456','男','','其他','足球;其他;','5129478512@163.com','13405570209'),('39e06647-bda0-4303-aff4-53e9225b0b4f','熊二','520520','男','1001-02-02','其他','羽毛球;篮球;足球;游泳;','456123789@outlook.com','13564867591'),('7474d737-d72b-4d9f-a732-eea28712d686','熊大','250250','男','1000-01-01','其他','羽毛球;篮球;足球;','25025025025@outlook.com','15250250250'),('9596b928-8a3d-44c8-913c-778e2b1f87ea','王','123456','女','1992-02-01','计算机与科学','篮球;台球;其他;','148562397@qq.com','13264867596'),('e671b46e-a5e3-4433-a8ea-9b17fc5607d7','王五','qwerdf','女','1985-02-09','计算机与科学','羽毛球;篮球;足球;游泳;','11283919231@163.com','15864567588'),('d6b24e6c-aef6-412a-98c3-8a62b6f4786e','王大','123456','男','1992-10-15','软件工程','篮球;足球;台球;拳击;其他;','wangda@outlook.com','17405510219'),('15a5d82b-8e0a-4058-bd5b-0bcbb97ba957','王老','148159','男','1992-01-01','软件工程','篮球;足球;游泳;羽毛球;排球;台球;拳击;其他;','5129478512@163.com','13405570209'),('7ec06a97-26ae-4a3e-a2dc-90d31805d320','王老二','123789','男','1200-01-02','电子信息','篮球;游泳;台球;其他;','147895623@qq.com','13422312611'),('d33f1e2f-ecb8-4d19-b4ff-a55cefbe3dfd','王老板','asdfgh','男','1992-05-03','计算机与科学','羽毛球;足球;游泳;','5598949525@163.com','13456899535'),('e81d9a2f-c903-420a-a1ed-f556f82fd16d','王霞可','cf1cf2','女','1992-0102','电子信息','篮球;足球;排球;台球;其他;','148262397@163.com','18405510119'),('0bdb1fb7-4208-466a-8d00-df33f7840cbe','蔡依林','hjkiop1','女','1992-02-06','其他','足球;游泳;台球;','caiyilin@outlook.com','13264237596'),('101d202c-8023-4172-a60a-2eede35d3b7c','蔡雯','123qwe','男','1992-01-02','网络工程','篮球;排球;其他;','148562397@163.com','17405570219'),('8acf52a3-4cd7-4e11-ae43-c0b313154f58','袁媛','sjoiu1','男','1991-07-02','计算机与科学','排球;其他;','578856297@163.com','17405021931'),('a6a57e58-8103-427e-bdc7-af777f443412','阿三','asan520','男','1996-01-02','软件工程','足球;台球;拳击;其他;','1485623297@163.com','13557020956'),('89b6ff1d-b1ee-43d4-8397-a95a67878195','阿斯','qwer1230','男','2007-01-01','计算机与科学','足球;台球;其他;','sda1asdad@163.com','15403570247'),('84ffa587-a1ff-4c69-b90a-d68b0f5f543f','高顿','qwer520qw','男','2005-12-21','历史师范','足球;台球;其他;','987564123@sina.com','15250255621');
 
+/*Table structure for table `custservice` */
+
+DROP TABLE IF EXISTS `custservice`;
+
+CREATE TABLE `custservice` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `customername` varchar(100) NOT NULL,
+  `linkman` varchar(20) NOT NULL,
+  `linkphone` varchar(20) NOT NULL,
+  `servicetype` varchar(200) DEFAULT NULL,
+  `servicedate` varchar(200) DEFAULT NULL,
+  `estimatedcost` varchar(200) DEFAULT NULL,
+  `actualcost` varchar(200) DEFAULT NULL,
+  `satisfaction` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `custservice` */
+
+insert  into `custservice`(`id`,`customername`,`linkman`,`linkphone`,`servicetype`,`servicedate`,`estimatedcost`,`actualcost`,`satisfaction`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','上门维护','2018/5/26','5000','4000','满意'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789078','客户培训','2018/7/19','4000','4200','满意');
+
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;

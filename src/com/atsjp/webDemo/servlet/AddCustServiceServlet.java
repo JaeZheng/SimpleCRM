@@ -58,12 +58,12 @@ public class AddCustServiceServlet extends HttpServlet {
 		if (us.addCustService(tempC)) {
 			request.setAttribute("message", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addCustServiceResult.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			request.setAttribute("message", "添加失败！请修改客户名称再次尝试！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addCustServiceResult.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

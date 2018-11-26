@@ -327,6 +327,7 @@ public class UserService {
 	 * 根据servlet返回的CustService对象，添加Company的对象到数据库中
 	 */
 	public boolean addCustService(CustService custService) {
+		System.out.println("UserService...");
 		if (custServiceDao.addCustService(custService)) {
 			return true;
 		} else {

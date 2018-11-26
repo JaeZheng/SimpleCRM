@@ -24,21 +24,17 @@
 
     function check() {
         //检查用户输入修改信息格式是否正确
-        var companyname = document.getElementById('companyname');
+        var customername = document.getElementById('customername');
         var linkman = document.getElementById('linkman');
         var linkphone = document.getElementById('linkphone');
-        var address = document.getElementById('address');
-        if (isnull(companyname.value)) {
-            alert("公司名称不能为空!");
+        if (isnull(customername.value)) {
+            alert("客户名称不能为空!");
             return false;
         } else if (isnull(linkman.value)) {
             alert("联系人不能为空!");
             return false;
         } else if (isnull(linkphone.value)) {
             alert("联系电话不能为空!");
-            return false;
-        } else if (isnull(address.value)) {
-            alert("办公地址不能为空!");
             return false;
         }
         var regphone = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^0?[1][358][0-9]{9}$)/;
@@ -48,63 +44,17 @@
         }
         return true;
     }
-
-		// 检查重复名
-		$("#companyname").blur( function() {
-							var reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{1,100}$/;
-							if (!reg.test(this.value)) {
-								this.focus();
-								$("#result").html("");
-								return false;
-							} else {
-								var url = "${pageContext.request.contextPath}/AddCompanyServlet";
-								$.post(url,{
-											method : "checkNameExist",
-											companyName : this.value
-										},
-										function(data) {
-											if (data == "true") {
-												$("#result").html("&nbsp;<font color='red'>此公司已存在</font>");
-											} else {
-												$("#result").html("&nbsp;<font color='blue'>公司未入数据库,可用</font>");
-											}
-										});
-							}
-		});
-
-		//检查重复手机号码
-		$("#linkphone").blur( function() {
-				var reg = /^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)/;
-				if (!reg.test(this.value)) {
-					this.focus();
-					$("#result1").html("&nbsp;<font color='red'>联系电话格式不正确</font>");
-					return false;
-				} else {
-					var url = "${pageContext.request.contextPath}/AddCompanyServlet";
-					$.post(url,{
-								method : "checkPhoneExist",
-								linkPhone : this.value
-								},
-							function(data) {
-								if (data == "true") {
-									$("#result1").html("&nbsp;<font color='red'>此联系电话已存在</font>");
-								} else {
-									$("#result1").html("&nbsp;<font color='blue'>此联系电话可用</font>");
-								}
-					});
-				}
-		});
 </script>
 </head>
 <body>
 	<form method="post"
-		action="<%=request.getContextPath()%>/AddCompanyServlet?method=addCompany">
+		action="<%=request.getContextPath()%>/AddCustServiceServlet?method=addCustService">
 		<fieldset>
-			<legend>客户信息</legend>
+			<legend>客户服务信息</legend>
 			<table align="center">
 				<tr>
-					<td>公司名称(*):</td>
-					<td><input type="text" name="companyname" id="companyname"><span
+					<td>客户名称(*):</td>
+					<td><input type="text" name="customername" id="customername"><span
 						id="result"></span></td>
 				</tr>
 				<tr>
@@ -117,8 +67,24 @@
 							id="result1"></span></td>
 				</tr>
 				<tr>
-					<td>办公地址(*):</td>
-					<td><input type="text" name="address" id="address"></td>
+					<td>服务类型:</td>
+					<td><input type="text" name="servicetype" id="servicetype"></td>
+				</tr>
+				<tr>
+					<td>服务日期:</td>
+					<td><input type="text" name="servicedate" id="servicedate"></td>
+				</tr>
+				<tr>
+					<td>预估成本:</td>
+					<td><input type="text" name="estimatedcost" id="estimatedcost"></td>
+				</tr>
+				<tr>
+					<td>实际成本:</td>
+					<td><input type="text" name="actualcost" id="actualcost"></td>
+				</tr>
+				<tr>
+					<td>满意程度:</td>
+					<td><input type="text" name="satisfaction" id="satisfaction"></td>
 				</tr>
 				<tr align="center">
 					<td colspan="2"><br> <br> <input type="submit" onclick="return check()"

@@ -44,6 +44,11 @@
 		<%--</tr>--%>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=0"
+					target="mainFrame" class="xyz">客户服务信息</a></td>
+		</tr>
+		<tr>
+			<td><a
 					href="<%=request.getContextPath()%>/UserServlet?method=aboutUs"
 					target="mainFrame">关于我们</a></td>
 		</tr>

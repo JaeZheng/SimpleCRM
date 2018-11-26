@@ -24,9 +24,11 @@ public class CustServiceDao implements CustServiceDaoInter {
     @Override
     public boolean addCustService(CustService custService) {
         try {
+            conn = JDBC.getConnection();
+            System.out.println("custServiceDao...");
             String sql1 = "insert into custService values(?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql1);
-            ps.setString(1, custService.getId());
+            ps.setInt(1, 0);
             ps.setString(2, custService.getCustomername());
             ps.setString(3, custService.getLinkman());
             ps.setString(4, custService.getLinkphone());
@@ -101,31 +103,15 @@ public class CustServiceDao implements CustServiceDaoInter {
     @Override
     public CustService getCustService(CustService custService) {
         CustService tempC = new CustService();
-        String index = "";
-        String sql = "";
-        boolean flag = false;
-        if (custService.getCustomername() != null && !custService.getCustomername().equals("")) {// 如果两者都有优先cname查找
-            index = custService.getCustomername();
-            flag = true; // 用于标记index被赋予了cname
-        } else if (custService.getLinkphone() != null
-                && !custService.getLinkphone().equals("")) {
-            index = custService.getLinkphone();
-            flag = false;// 用于标记index被赋予了cphone
-        }
-        if (!index.equals("") && flag) {
-            sql = "select * from custService where customername=?";
-        } else if (!index.equals("") && !flag) {
-            sql = "select * from custService where linkphone=?";
-        } else {
-            return null;
-        }
+        String index = custService.getId();
+        String sql = "select * from custService where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, index);
+            ps.setInt(1, Integer.parseInt(index));
             res = ps.executeQuery();
             while (res.next()) {
-                tempC = new CustService(res.getString(1), res.getString(2),
+                tempC = new CustService(Integer.toString(res.getInt(1)), res.getString(2),
                         res.getString(3), res.getString(4), res.getString(5),
                         res.getString(6), res.getString(7), res.getString(8),
                         res.getString(9));
@@ -151,17 +137,19 @@ public class CustServiceDao implements CustServiceDaoInter {
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
-                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
-                        res.getString(8), res.getString(9)));
+                tempc.add(new CustService(Integer.toString(res.getInt(1)), res.getString(2),
+                        res.getString(3), res.getString(4), res.getString(5),
+                        res.getString(6), res.getString(7), res.getString(8),
+                        res.getString(9)));
             }
-            String sql2 = "select * from custService where linkman like '%"+index+"%'";
+            String sql2 = "select * from custService where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
-                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
-                        res.getString(8), res.getString(9)));
+                tempc.add(new CustService(Integer.toString(res.getInt(1)), res.getString(2),
+                        res.getString(3), res.getString(4), res.getString(5),
+                        res.getString(6), res.getString(7), res.getString(8),
+                        res.getString(9)));
             }
             if (tempc.size() == 0){
                 return tempc;
@@ -197,7 +185,7 @@ public class CustServiceDao implements CustServiceDaoInter {
             res = ps.executeQuery();
             while(res.next())
                 count ++;
-            String sql2 = "select * from custService where linkman like '%"+index+"%'";
+            String sql2 = "select * from custService where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while(res.next())

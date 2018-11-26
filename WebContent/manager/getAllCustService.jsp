@@ -1,4 +1,4 @@
-<%@page import="com.atsjp.webDemo.servlet.GetPageCompanyServlet"%>
+<%@page import="com.atsjp.webDemo.servlet.GetPageCustServiceServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,18 +12,18 @@
 	href="<%=request.getContextPath()%>/css/getAllC.css" />
 </head>
 <body>
-    <a href="<%=request.getContextPath()%>/manager/queryCompany.jsp"
-       target="mainFrame"><button class="but">查询客户</button></a>&nbsp;&nbsp;
-    <a href="<%=request.getContextPath()%>/manager/addCompany.jsp"
-       target="mainFrame"><button class="but">增加客户</button></a><br><br><br>
+    <a href="<%=request.getContextPath()%>/manager/queryCustService.jsp"
+       target="mainFrame"><button class="but">查询服务信息</button></a>&nbsp;&nbsp;
+    <a href="<%=request.getContextPath()%>/manager/addCustService.jsp"
+       target="mainFrame"><button class="but">增加服务信息</button></a><br><br><br>
 	<fieldset>
         <font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
         <font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
-	<c:if test="${empty CompanyList}">
+	<c:if test="${empty CustServiceList}">
 		<c:if test="${!empty deleteResult}">
 			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br>
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=first"><font
+				href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=first"><font
 				color="#FFF" class="de">返回继续查看</font></a>
 		</c:if>
 		<c:if test="${empty deleteResult}">
@@ -32,28 +32,38 @@
 			</center>
 		</c:if>
 	</c:if>
-	<c:if test="${!empty CompanyList}">
+	<c:if test="${!empty CustServiceList}">
 		<br>
 		<br>
 		<br>
 		<table class="bordered" bgcolor="#FFFFFF">
 			<tr>
-				<td>公司名称</td>
+				<td>服务单号</td>
+				<td>客户名称</td>
 				<td>联系人</td>
 				<td>联系电话</td>
-				<td>办公地址</td>
-				<td>操作</td>
+				<td>服务类型</td>
+				<td>服务日期</td>
+				<td>预估成本</td>
+				<td>实际成本</td>
+				<td>客户满意度</td>
+                <td>操作</td>
 			</tr>
-			<c:forEach items="${CompanyList}" var="item">
+			<c:forEach items="${CustServiceList}" var="item">
 				<tr>
-					<td>${item.companyname}</td>
+					<td>${item.id}</td>
+					<td>${item.customername}</td>
 					<td>${item.linkman}</td>
 					<td>${item.linkphone}</td>
-					<td>${item.address}</td>
+					<td>${item.servicetype}</td>
+					<td>${item.servicedate}</td>
+					<td>${item.estimatedcost}</td>
+					<td>${item.actualcost}</td>
+					<td>${item.satisfaction}</td>
 					<td>
-                        <a href="<%=request.getContextPath()%>/GetCompanyServlet?cindex=${item.companyname}"
+                        <a href="<%=request.getContextPath()%>/GetCustServiceServlet?cindex=${item.id}"
                            class="mo">修改</a>
-                        <a href="<%=request.getContextPath()%>/DeleteCompanyServlet?companyname=${item.companyname}"
+                        <a href="<%=request.getContextPath()%>/DeleteCustServiceServlet?custServiceId=${item.id}"
                            class="de">删除</a></td>
 					<!-- 注意url传值中文乱码 -->
 				</tr>
@@ -61,9 +71,9 @@
 		</table>
 		<div class="page">
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=first">首页</a>
+				href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=first">首页</a>
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=up">上一页</a>
+				href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=up">上一页</a>
 			<c:if test="${requestScope.beginPage>1}">
 				<a href="#">...</a>
 			</c:if>
@@ -72,12 +82,12 @@
 				<c:choose>
 					<c:when test="${num==requestScope.currentPage}">
 						<a
-							href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=${num}"
+							href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=${num}"
 							class="de">${num}</a>
 					</c:when>
 					<c:otherwise>
 						<a
-							href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=${num}">${num}</a>
+							href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=${num}">${num}</a>
 					</c:otherwise>
 				</c:choose>
 
@@ -86,9 +96,9 @@
 				<a href="#">...</a>
 			</c:if>
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=down">下一页</a>
+				href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=down">下一页</a>
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=last">末页</a>
+				href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=last">末页</a>
 		</div>
 	</c:if>
 	<br><br>

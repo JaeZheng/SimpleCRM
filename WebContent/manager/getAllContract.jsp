@@ -47,6 +47,7 @@
 				<td>开票时间</td>
 				<td>发票编号</td>
 				<td>开票金额</td>
+				<td>操作</td>
 			</tr>
 			<c:forEach items="${ContractList}" var="item">
 				<tr>
