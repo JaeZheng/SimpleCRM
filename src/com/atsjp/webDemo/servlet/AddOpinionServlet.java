@@ -49,8 +49,7 @@ public class AddOpinionServlet extends HttpServlet {
 		String linkphone = request.getParameter("linkphone");
 		String opiniondetail = request.getParameter("opiniondetail");
 		String opinionstate = request.getParameter("opinionstate");
-		String id = UUIDutils.getUUID();// 获取随机UUID作为客户信息的id
-		Opinion tempC = new Opinion(id, companyname, linkman, linkphone, opiniondetail, opinionstate);
+		Opinion tempC = new Opinion(null, companyname, linkman, linkphone, opiniondetail, opinionstate);
 		UserService us = new UserService();
 		if (us.addOpinion(tempC)) {
 			request.setAttribute("message", "添加成功！");

@@ -27,7 +27,7 @@ public class OpinionDao implements OpinionDaoInter {
             conn = JDBC.getConnection();
             String sql1 = "insert into opinion values(?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql1);
-            ps.setString(1, opinion.getId());
+            ps.setInt(1, 0);
             ps.setString(2, opinion.getCompanyname());
             ps.setString(3, opinion.getLinkman());
             ps.setString(4, opinion.getLinkphone());
@@ -78,7 +78,7 @@ public class OpinionDao implements OpinionDaoInter {
             ps.setString(3, opinion.getLinkphone());
             ps.setString(4, opinion.getOpiniondetail());
             ps.setString(5, opinion.getOpinionstate());
-            ps.setString(6, opinion.getId());
+            ps.setInt(6, Integer.parseInt(opinion.getId()));
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class OpinionDao implements OpinionDaoInter {
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, index);
+            ps.setInt(1, Integer.parseInt(index));
             res = ps.executeQuery();
             while (res.next()) {
                 tempC = new Opinion(res.getString(1), res.getString(2),
@@ -132,7 +132,7 @@ public class OpinionDao implements OpinionDaoInter {
                         .getString(3), res.getString(4), res.getString(5),
                         res.getString(6)));
             }
-            String sql2 = "select * from opinion where linkman like '%"+index+"%'";
+            String sql2 = "select * from opinion where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while (res.next()) {
@@ -174,7 +174,7 @@ public class OpinionDao implements OpinionDaoInter {
             res = ps.executeQuery();
             while(res.next())
                 count ++;
-            String sql2 = "select * from opinion where linkman like '%"+index+"%'";
+            String sql2 = "select * from opinion where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while(res.next())
