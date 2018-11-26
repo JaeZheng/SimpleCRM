@@ -1,7 +1,7 @@
 package com.atsjp.webDemo.dao;
 
-import com.atsjp.webDemo.daoInter.CustServiceDaoInter;
-import com.atsjp.webDemo.entity.CustService;
+import com.atsjp.webDemo.daoInter.OpinionDaoInter;
+import com.atsjp.webDemo.entity.Opinion;
 import com.atsjp.webDemo.utils.JDBC;
 
 import java.sql.Connection;
@@ -12,30 +12,27 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CustServiceDao implements CustServiceDaoInter {
+public class OpinionDao implements OpinionDaoInter {
     private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet res = null;
 
     /*
      * 
-     * 增加custService对象
+     * 增加opinion对象
      */
     @Override
-    public boolean addCustService(CustService custService) {
+    public boolean addOpinion(Opinion opinion) {
         try {
             conn = JDBC.getConnection();
-            String sql1 = "insert into custService values(?,?,?,?,?,?,?,?,?)";
+            String sql1 = "insert into opinion values(?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql1);
-            ps.setInt(1, 0);
-            ps.setString(2, custService.getCustomername());
-            ps.setString(3, custService.getLinkman());
-            ps.setString(4, custService.getLinkphone());
-            ps.setString(5, custService.getServicetype());
-            ps.setString(6, custService.getServicedate());
-            ps.setString(7, custService.getEstimatedcost());
-            ps.setString(8, custService.getActualcost());
-            ps.setString(9, custService.getSatisfaction());
+            ps.setString(1, opinion.getId());
+            ps.setString(2, opinion.getCompanyname());
+            ps.setString(3, opinion.getLinkman());
+            ps.setString(4, opinion.getLinkphone());
+            ps.setString(5, opinion.getOpiniondetail());
+            ps.setString(6, opinion.getOpinionstate());
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -48,15 +45,15 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      * 
-     * 删除custService对象
+     * 删除opinion对象
      */
     @Override
-    public boolean deleteCustService(CustService custService) {
-        String sql = "delete from custService where id=?";
+    public boolean deleteOpinion(Opinion opinion) {
+        String sql = "delete from opinion where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, custService.getId());
+            ps.setString(1, opinion.getId());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -68,24 +65,20 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      * 
-     * 修改custService对象
+     * 修改opinion对象
      */
     @Override
-    public boolean modifyCustService(CustService custService) {
-        String sql = "update custService set customername=?, linkman=?, linkphone=?, servicetype=?, servicedate=?," +
-                " estimatedcost=?, actualcost=?, satisfaction=? where id=?";
+    public boolean modifyOpinion(Opinion opinion) {
+        String sql = "update opinion set companyname=?, linkman=?, linkphone=?, opiniondetail=?, opinionstate=? where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, custService.getCustomername());
-            ps.setString(2, custService.getLinkman());
-            ps.setString(3, custService.getLinkphone());
-            ps.setString(4, custService.getServicetype());
-            ps.setString(5, custService.getServicedate());
-            ps.setString(6, custService.getEstimatedcost());
-            ps.setString(7, custService.getActualcost());
-            ps.setString(8, custService.getSatisfaction());
-            ps.setInt(9, Integer.parseInt(custService.getId()));
+            ps.setString(1, opinion.getCompanyname());
+            ps.setString(2, opinion.getLinkman());
+            ps.setString(3, opinion.getLinkphone());
+            ps.setString(4, opinion.getOpiniondetail());
+            ps.setString(5, opinion.getOpinionstate());
+            ps.setString(6, opinion.getId());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -97,23 +90,22 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      * 
-     * 根据返回的custService对象的custServiceName或者linkPhone，查找custService对象
+     * 根据返回的opinion对象的opinionName或者linkPhone，查找opinion对象
      */
     @Override
-    public CustService getCustService(CustService custService) {
-        CustService tempC = new CustService();
-        String index = custService.getId();
-        String sql = "select * from custService where id=?";
+    public Opinion getOpinion(Opinion opinion) {
+        Opinion tempC = new Opinion();
+        String index = opinion.getId();
+        String sql = "select * from opinion where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, Integer.parseInt(index));
+            ps.setString(1, index);
             res = ps.executeQuery();
             while (res.next()) {
-                tempC = new CustService(Integer.toString(res.getInt(1)), res.getString(2),
+                tempC = new Opinion(res.getString(1), res.getString(2),
                         res.getString(3), res.getString(4), res.getString(5),
-                        res.getString(6), res.getString(7), res.getString(8),
-                        res.getString(9));
+                        res.getString(6));
             }
             return tempC;
         } catch (Exception e) {
@@ -125,35 +117,33 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      *
-     * 根据返回的index值，模糊查询custService对象
+     * 根据返回的index值，模糊查询opinion对象
      */
     @Override
-    public List<CustService> queryCustServiceList(String index, int page, int pageSize){
-        List<CustService> tempc = new ArrayList<CustService>();
+    public List<Opinion> queryOpinionList(String index, int page, int pageSize){
+        List<Opinion> tempc = new ArrayList<Opinion>();
         try {
-            String sql1 = "select * from custService where customername like '%"+index+"%'";
+            String sql1 = "select * from opinion where companyname like '%"+index+"%'";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(Integer.toString(res.getInt(1)), res.getString(2),
-                        res.getString(3), res.getString(4), res.getString(5),
-                        res.getString(6), res.getString(7), res.getString(8),
-                        res.getString(9)));
+                tempc.add(new Opinion(res.getString(1), res.getString(2), res
+                        .getString(3), res.getString(4), res.getString(5),
+                        res.getString(6)));
             }
-            String sql2 = "select * from custService where id='"+index+"'";
+            String sql2 = "select * from opinion where linkman like '%"+index+"%'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while (res.next()) {
-                tempc.add(new CustService(Integer.toString(res.getInt(1)), res.getString(2),
-                        res.getString(3), res.getString(4), res.getString(5),
-                        res.getString(6), res.getString(7), res.getString(8),
-                        res.getString(9)));
+                tempc.add(new Opinion(res.getString(1), res.getString(2), res
+                        .getString(3), res.getString(4), res.getString(5),
+                        res.getString(6)));
             }
             if (tempc.size() == 0){
                 return tempc;
             } else{
-                List<CustService> ppage= new ArrayList<CustService>();
+                List<Opinion> ppage= new ArrayList<Opinion>();
                 for (int i = (page)*pageSize; i < (page+1)*pageSize; i++) {
                     if(i < tempc.size()) {
                         ppage.add(tempc.get(i));
@@ -172,19 +162,19 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      *
-     * 根据返回的index值，模糊查询custService对象个数
+     * 根据返回的index值，模糊查询opinion对象个数
      */
     @Override
-    public int queryCustServiceCount(String index){
+    public int queryOpinionCount(String index){
         int count = 0;
         try {
-            String sql1 = "select * from custService where customername like '%"+index+"%'";
+            String sql1 = "select * from opinion where companyname like '%"+index+"%'";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while(res.next())
                 count ++;
-            String sql2 = "select * from custService where id='"+index+"'";
+            String sql2 = "select * from opinion where linkman like '%"+index+"%'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while(res.next())
@@ -200,13 +190,13 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      * 
-     * 返回所有custService对象
+     * 返回所有opinion对象
      */
     @Override
-    public List<CustService> page(int page, int pageSize) {
-        List<CustService> tempc = new LinkedList<CustService>();
+    public List<Opinion> page(int page, int pageSize) {
+        List<Opinion> tempc = new LinkedList<Opinion>();
         try {
-            String sql = "select * from custService limit ?,?";
+            String sql = "select * from opinion limit ?,?";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, page);
@@ -215,9 +205,9 @@ public class CustServiceDao implements CustServiceDaoInter {
             res = ps.executeQuery();
             // 4.访问结果集
             while (res.next()) {
-                tempc.add(new CustService(res.getString(1), res.getString(2), res.getString(3),
-                        res.getString(4), res.getString(5), res.getString(6), res.getString(7),
-                        res.getString(8), res.getString(9)));
+                tempc.add(new Opinion(res.getString(1), res.getString(2), res
+                        .getString(3), res.getString(4), res.getString(5),
+                        res.getString(6)));
             }
             return tempc;
         } catch (SQLException e) {
@@ -230,12 +220,12 @@ public class CustServiceDao implements CustServiceDaoInter {
 
     /*
      * 
-     * 返回custService总记录数
+     * 返回opinion总记录数
      */
     @Override
     public int getCount() {
         int count = 0;
-        String sql = "select count(*) from custService";
+        String sql = "select count(*) from opinion";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);

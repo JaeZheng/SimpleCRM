@@ -16,10 +16,12 @@ public class UserService {
 	CompanyDao companyDao = new CompanyDao();
 	ContractDao contractDao = new ContractDao();
 	CustServiceDao custServiceDao = new CustServiceDao();
+	OpinionDao opinionDao = new OpinionDao();
 	List<Customer> userlist = new LinkedList<Customer>();
 	List<Company> companyList = new LinkedList<Company>();
 	List<Contract> contractList = new LinkedList<Contract>();
 	List<CustService> custServiceList = new LinkedList<CustService>();
+	List<Opinion> opinionList = new LinkedList<Opinion>();
 
 	/*
 	 * 
@@ -327,7 +329,6 @@ public class UserService {
 	 * 根据servlet返回的CustService对象，添加Company的对象到数据库中
 	 */
 	public boolean addCustService(CustService custService) {
-		System.out.println("UserService...");
 		if (custServiceDao.addCustService(custService)) {
 			return true;
 		} else {
@@ -365,4 +366,43 @@ public class UserService {
 		List<CustService> queryCustServiceList = custServiceDao.queryCustServiceList(index, page, pageSize);
 		return queryCustServiceList;
 	}
+
+    public boolean addOpinion(Opinion opinion) {
+        if (opinionDao.addOpinion(opinion)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public List<Opinion> getAllOpinion(int page, int pageSize) {
+        opinionList = opinionDao.page(page, pageSize);
+        return opinionList;
+    }
+
+    public boolean deleteOpinion(Opinion opinion) {
+        if (opinionDao.deleteOpinion(opinion)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Opinion getOpinion(Opinion opinion) {
+        opinion = opinionDao.getOpinion(opinion);
+        return opinion;
+    }
+
+    public boolean modifyOpinion(Opinion opinion) {
+        if (opinionDao.modifyOpinion(opinion)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public List<Opinion> queryOpinionList(String index, int page, int pageSize){
+        List<Opinion> queryOpinionList = opinionDao.queryOpinionList(index, page, pageSize);
+        return queryOpinionList;
+    }
 }

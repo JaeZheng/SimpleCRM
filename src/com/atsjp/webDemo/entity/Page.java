@@ -10,6 +10,7 @@ public class Page {
 	CompanyDao companyDao = new CompanyDao();
 	ContractDao contractDao = new ContractDao();
 	CustServiceDao custServiceDao = new CustServiceDao();
+	OpinionDao opinionDao = new OpinionDao();
 
 	public Page() {// 创建的时候，初始化Page，TotalCount
 		super();
@@ -75,6 +76,19 @@ public class Page {
 		}
 	}
 
+	// 查询满足条件的opinion个数
+	public boolean queryOpinionCount(String index){
+		try {
+			this.TotalCount = opinionDao.queryOpinionCount(index);
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e){
+			return false;
+		}
+	}
+
 	// 获取company最新的数据库信息
 	public boolean getCompanyNew() {
 		try {
@@ -105,6 +119,19 @@ public class Page {
 	public boolean getCustServiceNew() {
 		try {
 			this.TotalCount = custServiceDao.getCount();
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// 获取opinion最新的数据库信息
+	public boolean getOpinionNew() {
+		try {
+			this.TotalCount = opinionDao.getCount();
 			double dtc = (double) TotalCount;
 			double dps = (double) PageSize;
 			this.Page = (int) Math.ceil(dtc / dps);

@@ -6,16 +6,16 @@ import com.atsjp.webDemo.entity.Company;
 
 public interface CompanyDaoInter {
     // 增加Company对象
-    public boolean addCompany(Company Company);
+    public boolean addCompany(Company company);
 
     // 删除Company对象
-    public boolean deleteCompany(Company Company);
+    public boolean deleteCompany(Company company);
 
     // 修改Company对象
-    public boolean modifyCompany(Company Company);
+    public boolean modifyCompany(Company company);
 
     // 根据返回的Company对象的cname或者cphone，查找Company对象
-    public Company getCompany(Company Company);
+    public Company getCompany(Company company);
 
     // 返回所有Company对象
     public List<Company> page(int page, int pageSize);
