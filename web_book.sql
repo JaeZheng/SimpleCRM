@@ -108,11 +108,29 @@ CREATE TABLE `custservice` (
   `actualcost` varchar(200) DEFAULT NULL,
   `satisfaction` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `custservice` */
 
-insert  into `custservice`(`id`,`customername`,`linkman`,`linkphone`,`servicetype`,`servicedate`,`estimatedcost`,`actualcost`,`satisfaction`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','上门维护','2018/5/26','5000','4000','满意'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789078','客户培训','2018/7/19','4000','4200','满意');
+insert  into `custservice`(`id`,`customername`,`linkman`,`linkphone`,`servicetype`,`servicedate`,`estimatedcost`,`actualcost`,`satisfaction`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','上门维护','2018/5/26','5000','4000','满意'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789078','客户培训','2018/7/19','4000','4200','不满意');
+
+/*Table structure for table `opinion` */
+
+DROP TABLE IF EXISTS `opinion`;
+
+CREATE TABLE `opinion` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `companyname` varchar(100) NOT NULL,
+  `linkman` varchar(20) NOT NULL,
+  `linkphone` varchar(20) NOT NULL,
+  `opiniondetail` varchar(200) DEFAULT NULL,
+  `opinionstate` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `opinion` */
+
+insert  into `opinion`(`id`,`companyname`,`linkman`,`linkphone`,`opiniondetail`,`opinionstate`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','对应业务人员处理紧急情况经验欠缺，缺乏效率','已解决'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789079','发票开具进度缓慢','已解决');
 
 /*Table structure for table `users` */
 

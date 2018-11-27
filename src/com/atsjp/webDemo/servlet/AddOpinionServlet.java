@@ -54,12 +54,12 @@ public class AddOpinionServlet extends HttpServlet {
 		if (us.addOpinion(tempC)) {
 			request.setAttribute("message", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addOpinionResult.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			request.setAttribute("message", "添加失败！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCresult.jsp");
+					.getRequestDispatcher("./manager/addOpinionResult.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

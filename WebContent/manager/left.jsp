@@ -49,6 +49,11 @@
 		</tr>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/GetPageOpinionServlet?page=0"
+					target="mainFrame" class="xyz">意见反馈管理</a></td>
+		</tr>
+		<tr>
+			<td><a
 					href="<%=request.getContextPath()%>/UserServlet?method=aboutUs"
 					target="mainFrame">关于我们</a></td>
 		</tr>

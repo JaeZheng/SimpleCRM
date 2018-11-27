@@ -53,7 +53,7 @@ public class OpinionDao implements OpinionDaoInter {
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, opinion.getId());
+            ps.setInt(1, Integer.parseInt(opinion.getId()));
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
