@@ -114,6 +114,23 @@ CREATE TABLE `custservice` (
 
 insert  into `custservice`(`id`,`customername`,`linkman`,`linkphone`,`servicetype`,`servicedate`,`estimatedcost`,`actualcost`,`satisfaction`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','上门维护','2018/5/26','5000','4000','满意'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789078','客户培训','2018/7/19','4000','4200','不满意');
 
+/*Table structure for table `lost` */
+
+DROP TABLE IF EXISTS `lost`;
+
+CREATE TABLE `lost` (
+  `id` varchar(40) NOT NULL,
+  `joindate` varchar(100) NOT NULL,
+  `lossdate` varchar(20) NOT NULL,
+  `companyname` varchar(20) NOT NULL,
+  `reason` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `lost` */
+
+insert  into `lost`(`id`,`joindate`,`lossdate`,`companyname`,`reason`) values ('77f79b5a-eb8e-44ee-a486-0f82b5fa1745','2015/8/30','2018/6/29','中国移动通信集团广东有限公司河源分公司','已与其他集成商达成新周期的合作规划'),('77f79b5a-eb8e-44ee-a486-0f82b5fa1752','2016/12/16','2018/8/20','中移铁通有限公司广东分公司','合同价格未谈妥');
+
 /*Table structure for table `opinion` */
 
 DROP TABLE IF EXISTS `opinion`;
@@ -130,7 +147,7 @@ CREATE TABLE `opinion` (
 
 /*Data for the table `opinion` */
 
-insert  into `opinion`(`id`,`companyname`,`linkman`,`linkphone`,`opiniondetail`,`opinionstate`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','对应业务人员处理紧急情况经验欠缺，缺乏效率','已解决'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789079','发票开具进度缓慢','已解决');
+insert  into `opinion`(`id`,`companyname`,`linkman`,`linkphone`,`opiniondetail`,`opinionstate`) values (1,'广州市道路扩建工程办公室','林志明','020-87560912','对应业务人员处理紧急情况经验欠缺，缺乏效率','未解决'),(2,'汕头市潮阳区城市综合管理局','张静丽','13256789079','发票开具进度缓慢','已解决');
 
 /*Table structure for table `users` */
 

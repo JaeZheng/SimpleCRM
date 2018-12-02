@@ -54,6 +54,11 @@
 		</tr>
 		<tr>
 			<td><a
+					href="<%=request.getContextPath()%>/GetPageLostServlet?page=0"
+					target="mainFrame" class="xyz">客户流失管理</a></td>
+		</tr>
+		<tr>
+			<td><a
 					href="<%=request.getContextPath()%>/UserServlet?method=aboutUs"
 					target="mainFrame">关于我们</a></td>
 		</tr>

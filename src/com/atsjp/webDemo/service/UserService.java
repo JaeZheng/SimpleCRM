@@ -17,11 +17,13 @@ public class UserService {
 	ContractDao contractDao = new ContractDao();
 	CustServiceDao custServiceDao = new CustServiceDao();
 	OpinionDao opinionDao = new OpinionDao();
+	LostDao lostDao = new LostDao();
 	List<Customer> userlist = new LinkedList<Customer>();
 	List<Company> companyList = new LinkedList<Company>();
 	List<Contract> contractList = new LinkedList<Contract>();
 	List<CustService> custServiceList = new LinkedList<CustService>();
 	List<Opinion> opinionList = new LinkedList<Opinion>();
+	List<Lost> lostList = new LinkedList<Lost>();
 
 	/*
 	 * 
@@ -405,4 +407,43 @@ public class UserService {
         List<Opinion> queryOpinionList = opinionDao.queryOpinionList(index, page, pageSize);
         return queryOpinionList;
     }
+
+	public boolean addLost(Lost lost) {
+		if (lostDao.addLost(lost)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public List<Lost> getAllLost(int page, int pageSize) {
+		lostList = lostDao.page(page, pageSize);
+		return lostList;
+	}
+
+	public boolean deleteLost(Lost lost) {
+		if (lostDao.deleteLost(lost)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Lost getLost(Lost lost) {
+		lost = lostDao.getLost(lost);
+		return lost;
+	}
+
+	public boolean modifyLost(Lost lost) {
+		if (lostDao.modifyLost(lost)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public List<Lost> queryLostList(String index, int page, int pageSize){
+		List<Lost> queryLostList = lostDao.queryLostList(index, page, pageSize);
+		return queryLostList;
+	}
 }

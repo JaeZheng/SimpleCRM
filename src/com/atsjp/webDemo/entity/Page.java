@@ -11,6 +11,7 @@ public class Page {
 	ContractDao contractDao = new ContractDao();
 	CustServiceDao custServiceDao = new CustServiceDao();
 	OpinionDao opinionDao = new OpinionDao();
+	LostDao lostDao = new LostDao();
 
 	public Page() {// 创建的时候，初始化Page，TotalCount
 		super();
@@ -89,6 +90,18 @@ public class Page {
 		}
 	}
 
+	public boolean queryLostCount(String index){
+		try {
+			this.TotalCount = lostDao.queryLostCount(index);
+			double dtc = (double) TotalCount;
+			double dps = (double) PageSize;
+			this.Page = (int) Math.ceil(dtc / dps);
+			return true;
+		} catch (Exception e){
+			return false;
+		}
+	}
+
 	// 获取company最新的数据库信息
 	public boolean getCompanyNew() {
 		try {
@@ -140,6 +153,18 @@ public class Page {
 			return false;
 		}
 	}
+
+    public boolean getLostNew() {
+        try {
+            this.TotalCount = lostDao.getCount();
+            double dtc = (double) TotalCount;
+            double dps = (double) PageSize;
+            this.Page = (int) Math.ceil(dtc / dps);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 	public int getPage() {
 		return Page;
