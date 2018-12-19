@@ -28,4 +28,6 @@ public interface OpinionDaoInter {
 
     // 返回Opinion总记录数
     public int getCount();
+
+    public boolean deleteOpinionAll();
 }

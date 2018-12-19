@@ -69,7 +69,21 @@ public class CompanyDao implements CompanyDaoInter {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, company.getCompanyname());
-//			System.out.println(company.getCname());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
+
+    @Override
+    public boolean deleteCompanyAll() {
+        String sql = "delete from company";
+        try{
+            conn = JDBC.getConnection();
+            ps = conn.prepareStatement(sql);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {

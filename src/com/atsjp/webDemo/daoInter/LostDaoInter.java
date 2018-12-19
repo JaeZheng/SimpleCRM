@@ -28,4 +28,6 @@ public interface LostDaoInter {
 
     // 返回Lost总记录数
     public int getCount();
+
+    public boolean deleteLostAll();
 }

@@ -67,6 +67,21 @@ public class ContractDao implements ContractDaoInter {
         }
 	}
 
+    @Override
+    public boolean deleteContractAll() {
+        String sql = "delete from contract";
+        try{
+            conn = JDBC.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
+
 	/*
 	 * 
 	 * ÐÞ¸Äcontract¶ÔÏó

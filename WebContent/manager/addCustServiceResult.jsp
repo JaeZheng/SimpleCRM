@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<br>
-	<a href="<%=request.getContextPath()%>/manager/addCustService.jsp">返回继续添加客户服务信息</a>
-	<a href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=0">查看已添加的客户服务信息</a>
+	<a href="<%=request.getContextPath()%>/manager/addCustService.jsp"><button class="but">返回继续添加客户服务信息</button></a><br>
+	<a href="<%=request.getContextPath()%>/GetPageCustServiceServlet?page=0"><button class="but">查看已添加的客户服务信息</button></a>
 </body>
 </html>

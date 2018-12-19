@@ -28,4 +28,6 @@ public interface CustServiceDaoInter {
 
     // 返回CustService总记录数
     public int getCount();
+
+    public boolean deleteCustServiceAll();
 }

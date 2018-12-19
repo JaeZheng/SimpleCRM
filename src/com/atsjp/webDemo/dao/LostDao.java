@@ -62,6 +62,21 @@ public class LostDao implements LostDaoInter {
         }
     }
 
+    @Override
+    public boolean deleteLostAll() {
+        String sql = "delete from lost";
+        try{
+            conn = JDBC.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
+
     /*
      * 
      * ÐÞ¸Älost¶ÔÏó

@@ -63,6 +63,21 @@ public class OpinionDao implements OpinionDaoInter {
         }
     }
 
+    @Override
+    public boolean deleteOpinionAll() {
+        String sql = "delete from opinion";
+        try{
+            conn = JDBC.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
+
     /*
      * 
      * ÐÞ¸Äopinion¶ÔÏó

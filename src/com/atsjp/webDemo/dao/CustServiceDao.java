@@ -25,7 +25,7 @@ public class CustServiceDao implements CustServiceDaoInter {
     public boolean addCustService(CustService custService) {
         try {
             conn = JDBC.getConnection();
-            String sql1 = "insert into custService values(?,?,?,?,?,?,?,?,?)";
+            String sql1 = "insert into custservice values(?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql1);
             ps.setInt(1, 0);
             ps.setString(2, custService.getCustomername());
@@ -52,11 +52,26 @@ public class CustServiceDao implements CustServiceDaoInter {
      */
     @Override
     public boolean deleteCustService(CustService custService) {
-        String sql = "delete from custService where id=?";
+        String sql = "delete from custservice where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, custService.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            JDBC.closeAll(conn, ps, res);
+        }
+    }
+
+    @Override
+    public boolean deleteCustServiceAll() {
+        String sql = "delete from custservice";
+        try{
+            conn = JDBC.getConnection();
+            ps = conn.prepareStatement(sql);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -72,7 +87,7 @@ public class CustServiceDao implements CustServiceDaoInter {
      */
     @Override
     public boolean modifyCustService(CustService custService) {
-        String sql = "update custService set customername=?, linkman=?, linkphone=?, servicetype=?, servicedate=?," +
+        String sql = "update custservice set customername=?, linkman=?, linkphone=?, servicetype=?, servicedate=?," +
                 " estimatedcost=?, actualcost=?, satisfaction=? where id=?";
         try {
             conn = JDBC.getConnection();
@@ -103,7 +118,7 @@ public class CustServiceDao implements CustServiceDaoInter {
     public CustService getCustService(CustService custService) {
         CustService tempC = new CustService();
         String index = custService.getId();
-        String sql = "select * from custService where id=?";
+        String sql = "select * from custservice where id=?";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
@@ -131,7 +146,7 @@ public class CustServiceDao implements CustServiceDaoInter {
     public List<CustService> queryCustServiceList(String index, int page, int pageSize){
         List<CustService> tempc = new ArrayList<CustService>();
         try {
-            String sql1 = "select * from custService where customername like '%"+index+"%'";
+            String sql1 = "select * from custservice where customername like '%"+index+"%'";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
@@ -141,7 +156,7 @@ public class CustServiceDao implements CustServiceDaoInter {
                         res.getString(6), res.getString(7), res.getString(8),
                         res.getString(9)));
             }
-            String sql2 = "select * from custService where id='"+index+"'";
+            String sql2 = "select * from custservice where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while (res.next()) {
@@ -178,13 +193,13 @@ public class CustServiceDao implements CustServiceDaoInter {
     public int queryCustServiceCount(String index){
         int count = 0;
         try {
-            String sql1 = "select * from custService where customername like '%"+index+"%'";
+            String sql1 = "select * from custservice where customername like '%"+index+"%'";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql1);
             res = ps.executeQuery();
             while(res.next())
                 count ++;
-            String sql2 = "select * from custService where id='"+index+"'";
+            String sql2 = "select * from custservice where id='"+index+"'";
             ps = conn.prepareStatement(sql2);
             res = ps.executeQuery();
             while(res.next())
@@ -206,7 +221,7 @@ public class CustServiceDao implements CustServiceDaoInter {
     public List<CustService> page(int page, int pageSize) {
         List<CustService> tempc = new LinkedList<CustService>();
         try {
-            String sql = "select * from custService limit ?,?";
+            String sql = "select * from custservice limit ?,?";
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, page);
@@ -235,7 +250,7 @@ public class CustServiceDao implements CustServiceDaoInter {
     @Override
     public int getCount() {
         int count = 0;
-        String sql = "select count(*) from custService";
+        String sql = "select count(*) from custservice";
         try {
             conn = JDBC.getConnection();
             ps = conn.prepareStatement(sql);

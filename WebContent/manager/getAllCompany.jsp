@@ -15,16 +15,20 @@
     <a href="<%=request.getContextPath()%>/manager/queryCompany.jsp"
        target="mainFrame"><button class="but">查询客户</button></a>&nbsp;&nbsp;
     <a href="<%=request.getContextPath()%>/manager/addCompany.jsp"
-       target="mainFrame"><button class="but">增加客户</button></a><br><br><br>
+       target="mainFrame"><button class="but">增加客户</button></a>&nbsp;&nbsp;
+    <c:if test="${sessionScope.user.name=='admin'}" >
+        <a href="<%=request.getContextPath()%>/DeleteCompanyServlet?method=deleteAll"
+           target="mainFrame"><button class="but">一键清空</button></a>
+    </c:if><br><br><br>
 	<fieldset>
         <font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
         <font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
 	<c:if test="${empty CompanyList}">
 		<c:if test="${!empty deleteResult}">
-			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br>
+			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br><br>
 			<a
-				href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=first"><font
-				color="#FFF" class="de">返回继续查看</font></a>
+				    href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=first"><button
+					class="but">返回继续查看</button></a>
 		</c:if>
 		<c:if test="${empty deleteResult}">
 			<center>

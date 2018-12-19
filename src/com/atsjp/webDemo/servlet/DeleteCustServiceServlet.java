@@ -34,9 +34,14 @@ public class DeleteCustServiceServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String custServiceId= request.getParameter("custServiceId");
-		CustService tempC = new CustService();
-		tempC.setId(custServiceId);
-		boolean deleteResult = us.deleteCustService(tempC);
+		boolean deleteResult;
+		if (custServiceId == null) {
+			deleteResult = us.deleteCustServiceAll();
+		} else {
+			CustService tempC = new CustService();
+			tempC.setId(custServiceId);
+			deleteResult = us.deleteCustService(tempC);
+		}
         page.getCustServiceNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();

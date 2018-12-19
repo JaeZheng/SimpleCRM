@@ -34,9 +34,14 @@ public class DeleteLostServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String lostId = request.getParameter("lostId");
-		Lost tempC = new Lost();
-		tempC.setId(lostId);
-		boolean deleteResult = us.deleteLost(tempC);
+		boolean deleteResult;
+		if (lostId == null) {
+			deleteResult = us.deleteLostAll();
+		} else {
+			Lost tempC = new Lost();
+			tempC.setId(lostId);
+			deleteResult = us.deleteLost(tempC);
+		}
         page.getLostNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();

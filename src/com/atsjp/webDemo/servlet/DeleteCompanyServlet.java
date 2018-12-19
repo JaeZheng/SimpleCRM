@@ -34,9 +34,14 @@ public class DeleteCompanyServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String companyname= request.getParameter("companyname");
-		Company tempC = new Company();
-		tempC.setCompanyname(companyname);
-		boolean deleteResult = us.deleteCompany(tempC);
+		boolean deleteResult;
+		if (companyname == null){
+		    deleteResult = us.deleteCompanyAll();
+        } else {
+            Company tempC = new Company();
+            tempC.setCompanyname(companyname);
+            deleteResult = us.deleteCompany(tempC);
+        }
         page.getCompanyNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();

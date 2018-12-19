@@ -34,9 +34,14 @@ public class DeleteOpinionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String opinionId= request.getParameter("opinionId");
-		Opinion tempC = new Opinion();
-		tempC.setId(opinionId);
-		boolean deleteResult = us.deleteOpinion(tempC);
+		boolean deleteResult;
+		if (opinionId == null) {
+			deleteResult = us.deleteOpinionAll();
+		} else {
+			Opinion tempC = new Opinion();
+			tempC.setId(opinionId);
+			deleteResult = us.deleteOpinion(tempC);
+		}
         page.getOpinionNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();

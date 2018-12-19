@@ -28,4 +28,6 @@ public interface ContractDaoInter {
 
     // 返回Contract总记录数
     public int getCount();
+
+    public boolean deleteContractAll();
 }

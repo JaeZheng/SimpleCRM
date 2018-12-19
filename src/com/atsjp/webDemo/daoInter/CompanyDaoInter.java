@@ -28,4 +28,7 @@ public interface CompanyDaoInter {
 
     // 返回Company总记录数
     public int getCount();
+
+    // 删除全部Company
+    public boolean deleteCompanyAll();
 }

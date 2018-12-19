@@ -221,6 +221,14 @@ public class UserService {
         }
     }
 
+    public boolean deleteCompanyAll(){
+    	if (companyDao.deleteCompanyAll()){
+    		return true;
+		} else {
+    		return false;
+		}
+	}
+
 	/*
      *
      * 根据servlet返回的page、pageSize，进行Contract对象的数据库分页查找
@@ -248,6 +256,14 @@ public class UserService {
 	 */
 	public boolean deleteContract(Contract contract) {
 		if (contractDao.deleteContract(contract)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean deleteContractAll(){
+		if (contractDao.deleteContractAll()) {
 			return true;
 		} else {
 			return false;
@@ -351,6 +367,14 @@ public class UserService {
 		}
 	}
 
+	public boolean deleteCustServiceAll(){
+	    if (custServiceDao.deleteCustServiceAll()) {
+	        return true;
+        } else {
+	        return false;
+        }
+    }
+
 	public CustService getCustService(CustService custService) {
 		custService = custServiceDao.getCustService(custService);
 		return custService;
@@ -387,6 +411,14 @@ public class UserService {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public boolean deleteOpinionAll() {
+	    if (opinionDao.deleteOpinionAll()) {
+	        return true;
+        } else {
+	        return false;
         }
     }
 
@@ -428,6 +460,14 @@ public class UserService {
 			return false;
 		}
 	}
+
+	public boolean deleteLostAll() {
+        if (lostDao.deleteLostAll()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	public Lost getLost(Lost lost) {
 		lost = lostDao.getLost(lost);

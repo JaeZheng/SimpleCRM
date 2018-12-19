@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<br>
-	<a href="<%=request.getContextPath()%>/manager/addContract.jsp">返回继续添加合同</a>
-	<a href="<%=request.getContextPath()%>/GetPageContractServlet?page=0">查看已添加的合同信息</a>
+	<a href="<%=request.getContextPath()%>/manager/addContract.jsp"><button class="but">返回继续添加合同</button></a><br>
+	<a href="<%=request.getContextPath()%>/GetPageContractServlet?page=0"><button class="but">查看已添加的合同信息</button></a>
 </body>
 </html>

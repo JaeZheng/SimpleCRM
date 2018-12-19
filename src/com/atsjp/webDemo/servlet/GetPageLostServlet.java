@@ -71,7 +71,7 @@ public class GetPageLostServlet extends HttpServlet {
 			currentPage = 0;
 		}
 
-		if (currentPage >= totalCount) {
+		if (currentPage > totalCount) {
 			currentPage = (pageService.getPage() - 1) * pageSize;
 		}
 		pageService.setCurrentPage(currentPage);

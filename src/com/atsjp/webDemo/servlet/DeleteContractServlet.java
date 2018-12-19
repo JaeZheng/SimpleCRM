@@ -34,9 +34,14 @@ public class DeleteContractServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String id= request.getParameter("id");
-		Contract tempC = new Contract();
-		tempC.setId(id);
-		boolean deleteResult = us.deleteContract(tempC);
+		boolean deleteResult;
+		if (id == null) {
+			deleteResult = us.deleteContractAll();
+		} else {
+			Contract tempC = new Contract();
+			tempC.setId(id);
+			deleteResult = us.deleteContract(tempC);
+		}
         page.getContractNew();
         // Î¬»¤µ±Ç°Ò³
         int lastPage = page.getPage();

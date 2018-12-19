@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<br>
-	<a href="<%=request.getContextPath()%>/manager/addCompany.jsp">返回继续添加</a>
-	<a href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=0">查看已添加的信息</a>
+	<a href="<%=request.getContextPath()%>/manager/addCompany.jsp"><button class="but">返回继续添加</button></a><br>
+	<a href="<%=request.getContextPath()%>/GetPageCompanyServlet?page=0"><button class="but">查看已添加的信息</button></a>
 </body>
 </html>

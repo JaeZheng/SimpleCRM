@@ -15,16 +15,20 @@
     <a href="<%=request.getContextPath()%>/manager/queryLost.jsp"
        target="mainFrame"><button class="but">查询流失记录</button></a>&nbsp;&nbsp;
     <a href="<%=request.getContextPath()%>/manager/addLost.jsp"
-       target="mainFrame"><button class="but">增加流失记录</button></a><br><br><br>
+       target="mainFrame"><button class="but">增加流失记录</button></a>&nbsp;&nbsp;
+	<c:if test="${sessionScope.user.name=='admin'}" >
+		<a href="<%=request.getContextPath()%>/DeleteLostServlet?method=deleteAll"
+		   target="mainFrame"><button class="but">一键清空</button></a>
+	</c:if><br><br><br>
 	<fieldset>
         <font color="#FFF">总记录：&nbsp;${requestScope.totalCount}</font>&nbsp;&nbsp;
         <font color="#FFF">总页数：&nbsp;${requestScope.lastPage}</font>
 	<c:if test="${empty LostList}">
 		<c:if test="${!empty deleteResult}">
-			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br>
+			<font color="#FFF">&nbsp;&nbsp;&nbsp;${requestScope.deleteResult}</font>&nbsp;&nbsp;&nbsp;<br><br>
 			<a
-				href="<%=request.getContextPath()%>/GetPageLostServlet?page=first"><font
-				color="#FFF" class="de">返回继续查看</font></a>
+				href="<%=request.getContextPath()%>/GetPageLostServlet?page=first"><button
+				class="but">返回继续查看</button></a>
 		</c:if>
 		<c:if test="${empty deleteResult}">
 			<center>
