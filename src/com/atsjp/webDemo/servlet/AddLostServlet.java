@@ -48,14 +48,14 @@ public class AddLostServlet extends HttpServlet {
 		Lost tempC = new Lost(id, joindate, lossdate, companyname, reason);
 		UserService us = new UserService();
 		if (us.addLost(tempC)) {
-			request.setAttribute("message", "添加成功！");
+			request.setAttribute("addResult", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addLostResult.jsp");
+					.getRequestDispatcher("/GetPageLostServlet?page=0");
 			dispatcher.forward(request, response);
 		} else {
-			request.setAttribute("message", "添加失败！请再次尝试！");
+			request.setAttribute("addResult", "添加失败！请再次尝试！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addLostResult.jsp");
+					.getRequestDispatcher("/GetPageLostServlet?page=0");
 			dispatcher.forward(request, response);
 		}
 	}

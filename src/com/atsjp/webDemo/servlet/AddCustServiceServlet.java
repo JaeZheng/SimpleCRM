@@ -56,14 +56,14 @@ public class AddCustServiceServlet extends HttpServlet {
 				servicedate, estimatedcost, actualcost, satisfaction);
 		UserService us = new UserService();
 		if (us.addCustService(tempC)) {
-			request.setAttribute("message", "添加成功！");
+			request.setAttribute("addResult", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCustServiceResult.jsp");
+					.getRequestDispatcher("/GetPageCustServiceServlet?page=0");
 			dispatcher.forward(request, response);
 		} else {
-			request.setAttribute("message", "添加失败！请修改客户名称再次尝试！");
+			request.setAttribute("addResult", "添加失败！请修改客户名称再次尝试！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addCustServiceResult.jsp");
+					.getRequestDispatcher("/GetPageCustServiceServlet?page=0");
 			dispatcher.forward(request, response);
 		}
 	}

@@ -52,14 +52,14 @@ public class AddOpinionServlet extends HttpServlet {
 		Opinion tempC = new Opinion(null, companyname, linkman, linkphone, opiniondetail, opinionstate);
 		UserService us = new UserService();
 		if (us.addOpinion(tempC)) {
-			request.setAttribute("message", "添加成功！");
+			request.setAttribute("addResult", "添加成功！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addOpinionResult.jsp");
+					.getRequestDispatcher("/GetPageOpinionServlet?page=0");
 			dispatcher.forward(request, response);
 		} else {
-			request.setAttribute("message", "添加失败！");
+			request.setAttribute("addResult", "添加失败！");
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./manager/addOpinionResult.jsp");
+					.getRequestDispatcher("/GetPageOpinionServlet?page=0");
 			dispatcher.forward(request, response);
 		}
 	}

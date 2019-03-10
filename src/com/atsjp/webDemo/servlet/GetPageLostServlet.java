@@ -87,6 +87,13 @@ public class GetPageLostServlet extends HttpServlet {
 		if (endPage > pageService.getPage()) {
 			endPage = pageService.getPage();
 		}
+        Object addResult = request.getAttribute("addResult");
+        Object deleteResult = request.getAttribute("deleteResult");
+		if (addResult != null){
+		    request.setAttribute("addResult", addResult.toString());
+        } else if (deleteResult != null){
+		    request.setAttribute("deleteResult", deleteResult.toString());
+        }
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("lastPage", pageService.getPage());
 		request.setAttribute("firstPage", 1);

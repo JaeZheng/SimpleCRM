@@ -50,11 +50,11 @@ public class DeleteContractServlet extends HttpServlet {
         request.setAttribute("lastPage", lastPage);
 		if (deleteResult) {
 			request.setAttribute("deleteResult", "É¾³ý³É¹¦£¡");
-			request.getRequestDispatcher("./manager/getAllContract.jsp")
+			request.getRequestDispatcher("/GetPageContractServlet?page=0")
 					.forward(request, response);
 		} else {
 			request.setAttribute("deleteResult", "É¾³ýÊ§°Ü£¡");
-			request.getRequestDispatcher("./manager/getAllContract.jsp")
+			request.getRequestDispatcher("/GetPageContractServlet?page=0")
 					.forward(request, response);
 		}
 

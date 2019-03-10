@@ -18,6 +18,7 @@
    target="mainFrame"><button class="but">增加合同</button></a>&nbsp;&nbsp;
 <c:if test="${sessionScope.user.name=='admin'}" >
     <a href="<%=request.getContextPath()%>/DeleteContractServlet?method=deleteAll"
+	   onclick= "if(confirm('是否真的要清空数据？')==false) return false; "
        target="mainFrame"><button class="but">一键清空</button></a>
 </c:if><br><br><br>
 	<fieldset>
@@ -107,5 +108,21 @@
 	</c:if>
 	<br><br>
 	</fieldset>
+    <%
+        Object addResult = request.getAttribute("addResult");
+        if(addResult!=null && !"".equals(addResult)){
+    %>
+    <script type="text/javascript">
+        alert("<%=addResult%>");
+    </script>
+    <%} %>
+    <%
+        Object deleteResult = request.getAttribute("deleteResult");
+        if(deleteResult!=null && !"".equals(deleteResult)){
+    %>
+    <script type="text/javascript">
+        alert("<%=deleteResult%>");
+    </script>
+    <%} %>
 </body>
 </html>

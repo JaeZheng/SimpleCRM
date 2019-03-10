@@ -50,11 +50,11 @@ public class DeleteCustServiceServlet extends HttpServlet {
         request.setAttribute("lastPage", lastPage);
 		if (deleteResult) {
 			request.setAttribute("deleteResult", "É¾³ý³É¹¦£¡");
-			request.getRequestDispatcher("./manager/getAllCustService.jsp")
+			request.getRequestDispatcher("/GetPageCustServiceServlet?page=0")
 					.forward(request, response);
 		} else {
 			request.setAttribute("deleteResult", "É¾³ýÊ§°Ü£¡");
-			request.getRequestDispatcher("./manager/getAllCustService.jsp")
+			request.getRequestDispatcher("/GetPageCustServiceServlet?page=0")
 					.forward(request, response);
 		}
 
