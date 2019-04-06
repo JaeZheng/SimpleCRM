@@ -129,7 +129,7 @@ CREATE TABLE `lost` (
 
 /*Data for the table `lost` */
 
-insert  into `lost`(`id`,`joindate`,`lossdate`,`companyname`,`reason`) values ('77f79b5a-eb8e-44ee-a486-0f82b5fa1745','2015/8/30','2018/6/29','中国移动通信集团广东有限公司河源分公司','已与其他集成商达成新周期的合作规划'),('77f79b5a-eb8e-44ee-a486-0f82b5fa1752','2016/12/16','2018/8/20','中移铁通有限公司广东分公司','合同价格未谈妥');
+insert  into `lost`(`id`,`joindate`,`lossdate`,`companyname`,`reason`) values ('110491df-776f-40f1-a423-c767b3f86efc','2015/08/30','2018/06/29','中国移动通信集团广东有限公司河源分公司','已与其他集成商达成新周期的合作规划'),('83ee5472-3299-4eb0-b176-26730bc92e59','2016/12/16','2018/08/20','中移铁通有限公司广东分公司','合同价格未谈妥');
 
 /*Table structure for table `opinion` */
 
@@ -143,7 +143,7 @@ CREATE TABLE `opinion` (
   `opiniondetail` varchar(200) DEFAULT NULL,
   `opinionstate` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `opinion` */
 
@@ -164,7 +164,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`email`) values ('34f39b5a-eb8e-43ee-a486-0f82b5fa1732','sjppop','124','455@163.com'),('933098ad-3737-423d-9cd7-733cfc6668e8','xfzhang','123456',''),('d8f71490-7029-46a8-9da8-9a937010585e','admin','123456',NULL),('d8f71490-7029-46a8-9da8-9a937060585e','Jack','123456','');
+insert  into `users`(`id`,`username`,`password`,`email`) values ('34f39b5a-eb8e-43ee-a486-0f82b5fa1732','sjppop','124','455@163.com'),('933098ad-3737-423d-9cd7-733cfc6668e8','xfzhang','123456',''),('d8f71490-7029-46a8-9da8-9a937010585e','admin','123456',NULL),('d8f71490-7029-46a8-9da8-9a937060585e','user','123456','');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
