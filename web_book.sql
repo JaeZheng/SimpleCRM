@@ -1,4 +1,4 @@
-/*
+﻿/*
 SQLyog Ultimate v12.09 (64 bit)
 MySQL - 5.7.12-log : Database - web_book
 *********************************************************************
@@ -14,6 +14,7 @@ MySQL - 5.7.12-log : Database - web_book
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`web_book` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
+CREATE DATABASE `web_book` CHARACTER SET utf8;
 USE `web_book`;
 
 /*Table structure for table `about` */
